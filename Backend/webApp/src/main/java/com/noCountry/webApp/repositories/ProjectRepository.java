@@ -1,6 +1,6 @@
 package com.noCountry.webApp.repositories;
 
-import com.noCountry.webApp.models.Project;
+import com.noCountry.webApp.entities.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

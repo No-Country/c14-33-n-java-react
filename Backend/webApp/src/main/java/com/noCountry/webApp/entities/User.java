@@ -1,4 +1,4 @@
-package com.noCountry.webApp.models;
+package com.noCountry.webApp.entities;
 
 public class User {
 
