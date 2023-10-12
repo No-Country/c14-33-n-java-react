@@ -1,10 +1,10 @@
-package c1433njavareact.backend;
+package com.noCountry.webApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class WebAppApplicationTests {
 
 	@Test
 	void contextLoads() {
