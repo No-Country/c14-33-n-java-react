@@ -1,4 +1,4 @@
-package appNombreBackend.dao;
+package com.noCountry.webApp.repositories;
 
 import java.util.List;
 import java.util.Optional;
