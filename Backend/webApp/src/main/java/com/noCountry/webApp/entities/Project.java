@@ -48,6 +48,11 @@ public class Project implements Serializable {
     @Enumerated(EnumType.STRING)
     private Status estado;
 
+	public static Object builder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
     //private User creador_por;
 
 }

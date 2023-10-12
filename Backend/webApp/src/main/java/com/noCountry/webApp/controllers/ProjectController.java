@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ProjectController {
 
-    private final ProjectService service;
+    private final ProjectService service = null;
 
     @GetMapping("/projects")
     public List<Project> list() {

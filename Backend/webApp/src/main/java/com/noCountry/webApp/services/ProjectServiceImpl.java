@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
-    private final ProjectRepository repository;
+    private final ProjectRepository repository = null;
 
     @Override
     public List<Project> findAll() {
