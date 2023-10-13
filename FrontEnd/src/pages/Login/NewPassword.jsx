@@ -10,7 +10,7 @@ const NewPassword = () => {
           <input
             type="password"
             placeholder="Ingrese su contraseña"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer ..."
+            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer"
           />
         </div>
         

@@ -4,8 +4,8 @@ Link
 const ForgotPassword = () => {
   return (
     <>
-      <h1 className="text-gray-300 font-black rounded-t-xl text-4xl capitalize bg-indigo-600 p-5">Escribe tu email para recuperar {''}
-      <span className="text-red-400">Tu cuenta</span></h1>
+      <h1 className="text-black font-black rounded-t-xl text-4xl capitalize bg-slate-500 p-5">Escribe tu email para recuperar {''}
+      <span className="text-gray-100">Tu cuenta</span></h1>
       <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black">
         <div className="my-5">
           <label className="uppercase text-gray-700 block text-xl "
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
           <input 
           type="email"
           placeholder="Ingrese su Correo"
-          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer ... 
+          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
           focus:invalid:border-red-500"          
