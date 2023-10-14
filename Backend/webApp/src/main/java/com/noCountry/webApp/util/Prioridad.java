@@ -1,5 +1,5 @@
 package com.noCountry.webApp.util;
 
-public enum Priority {
+public enum Prioridad {
     LOW, MEDIUM, HIGH
 }

@@ -1,4 +1,3 @@
-DROP DATABASE nocountryDB;
 CREATE 	DATABASE nocountryDB;
 USE nocountryDB;
 CREATE TABLE `Users` (

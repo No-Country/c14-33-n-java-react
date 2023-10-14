@@ -1,8 +1,9 @@
 package com.noCountry.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.noCountry.webApp.util.Priority;
-import com.noCountry.webApp.util.Status;
+import com.noCountry.webApp.util.Prioridad;
+import com.noCountry.webApp.util.Estado;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,7 +27,9 @@ import lombok.Setter;
 @Builder
 public class Project implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -43,16 +46,68 @@ public class Project implements Serializable {
     private LocalDate fechaVencimiento;
 
     @Enumerated(EnumType.STRING)
-    private Priority prioridad;
+    private Prioridad prioridad;
 
     @Enumerated(EnumType.STRING)
-    private Status estado;
+    private Estado estado;
+
+    
+   
+	
 
 	public static Object builder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-    //private User creador_por;
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public LocalDate getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDate fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public LocalDate getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+
+	public Prioridad getPrioridad() {
+		return prioridad;
+	}
+
+	public void setPrioridad(Prioridad prioridad) {
+		this.prioridad = prioridad;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+
 
 }

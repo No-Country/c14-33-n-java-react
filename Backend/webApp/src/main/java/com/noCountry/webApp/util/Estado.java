@@ -1,5 +1,5 @@
 package com.noCountry.webApp.util;
 
-public enum Status {
+public enum Estado {
     IN_PROGRESS, COMPLETED
 }

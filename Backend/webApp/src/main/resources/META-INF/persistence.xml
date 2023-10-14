@@ -8,12 +8,18 @@
 	 
     <properties>
       <property name="jakarta.persistence.jdbc.driver" 		value="com.mysql.cj.jdbc.Driver" />
-      <property name="jakarta.persistence.jdbc.url"    		value="jdbc:mysql://localhost:3306/hibernate_examples" />
+      <property name="jakarta.persistence.jdbc.url"    		value="jdbc:mysql://localhost:3306/nocountryDB" />
       <property name="jakarta.persistence.jdbc.user"   		value="root" />
       <property name="jakarta.persistence.jdbc.password" 	value="" />
       
-      <property name="jakarta.persistence.schema-generation.database.action" 		value="update" />
-
+      <property name="jakarta.persistence.schema-generation.database.action" 		value="drop-and-create" />
+      <property name="jakarta.persistence.schema-generation.create-source"	 		value="script" />
+      <property name="jakarta.persistence.schema-generation.drop-source"	 		value="script" />
+      <property name="jakarta.persistence.schema-generation.create-sript-source"	value="META-INF/create.sql" />
+      <property name="jakarta.persistence.schema-generation.drop-script-source"	 	value="META-INF/create.sql" />
+      <property name="jakarta.persistence.sql-load-script-source"	 				value="META-INF/insert.sql" />
+      
+	
   
       <property name="hibernate.dialect"    value="org.hibernate.dialect.MySQLDialect" />
       <property name="hibernate.show_sql"   value="true" />
