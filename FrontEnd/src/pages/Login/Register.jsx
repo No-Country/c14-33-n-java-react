@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import Alert from "../../components/Alert"
-
+import axios from 'axios'
 
 const Register = () => {
     const[name,setName]=useState('')
@@ -11,7 +11,7 @@ const Register = () => {
     /* creamos la constante para la alerta */
     const[alert,setAlert]=useState({})
     /* funcion para el envio del formulario */
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
       e.preventDefault();
       /* hacemos que todos los campos sean obligatorios */
       if([name,email,password,repeatPassword].includes('')){      
@@ -36,13 +36,26 @@ const Register = () => {
         return
       }
       setAlert({})
+      try {
+        const {data} = await axios.post('http://',name,email,password)
+        setAlert({
+          msg: data.msg,
+          error:false
+        })
+      } catch (error) {
+        setAlert({
+          msg: error.repsonse.data.msg,
+          error:true
+        })
+      }
+
     }
 
   const { msg } = alert
 
   return (
     <>
-      <h1 className="text-sky-950q font-black rounded-t-xl text-4xl capitalize bg-cyan-600 p-5">Crea tu cuenta y organiza tus {''}
+      <h1 className="text-sky-950q font-black rounded-t-xl text-4xl capitalize bg-cyan-600 bg-opacity-50 p-5">Crea tu cuenta y organiza tus {''}
         <span className="text-gray-100">Proyectos y Tareas</span></h1>
 
       {/* ejecutamos la alerta */}

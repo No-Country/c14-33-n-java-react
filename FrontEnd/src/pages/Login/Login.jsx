@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const Login = () => {
   return (
     <>
-      <h1 className="text-sky-950 font-black rounded-t-xl text-4xl capitalize bg-emerald-600 p-5">Para acceder a tu lugar de trabajo {''}
+      <h1 className="text-sky-950 font-black rounded-t-xl text-4xl capitalize bg-emerald-600 bg-opacity-50 p-5">Para acceder a tu lugar de trabajo {''}
       <span className="text-gray-100">Inicia sesión</span></h1>
       <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black">
         <div className="my-5">
@@ -19,6 +19,7 @@ const Login = () => {
           invalid:border-red-500 invalid:text-red-500
           focus:invalid:border-red-500"          
           />
+          
           <p className="mt-2 invisible peer-invalid:visible text-red-400 text-sm ml-1 ">
             Porfavor ingrese una dirección de correo valida.
           </p>
@@ -32,6 +33,7 @@ const Login = () => {
           placeholder="Ingrese su contraseña"
           className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"          
           />
+          
         </div>
         <input 
         type="submit"
