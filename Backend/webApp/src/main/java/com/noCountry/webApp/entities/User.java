@@ -1,14 +1,19 @@
 package com.noCountry.webApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.noCountry.webApp.util.AccountStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,9 +32,20 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+    private String firstName;
+    private String lastName;
     private String email;
+    private String userName;
     private String password;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate registrationDate;
+    private String imagePerfil;
+    private String phone;
+    private String address;
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
 
     @JsonIgnoreProperties({"user", "hibernateLazyInitializer", "handler"})
     @OneToMany(
