@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @AllArgsConstructor
 public class WebAppApplication implements CommandLineRunner {
 
-    private final ProjectRepository repository = null;
+    private final ProjectRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(WebAppApplication.class, args);
@@ -22,6 +22,7 @@ public class WebAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+<<<<<<< HEAD
         var project1 = Project.builder()
             .nombre("Nombre 1 ")
             .descripcion("Descripcion 1......")
@@ -38,10 +39,35 @@ public class WebAppApplication implements CommandLineRunner {
             .fechaVencimiento(LocalDate.now())
             .prioridad(Priority.MEDIUM)
             .estado(Status.IN_PROGRESS)
+=======
+
+        var project1 = Project.builder()
+            .name("Nombre 1 ")
+            .description("Descripcion 1......")
+            .creationDate(LocalDate.now())
+            .expirationDate(LocalDate.now())
+            .priority(Priority.MEDIUM)
+            .status(Status.IN_PROGRESS)
+            .comment("Comentariooooooooo loremusssss")
+            .build();
+
+        var project2 = Project.builder()
+            .name("Nombre 2 ")
+            .description("Descripcion 2......")
+            .creationDate(LocalDate.now())
+            .expirationDate(LocalDate.now())
+            .priority(Priority.MEDIUM)
+            .status(Status.IN_PROGRESS)
+            .comment("Comentario2 lorem .sdasd")
+>>>>>>> entity-project
             .build();
 
         repository.save(project1);
         repository.save(project2);
+<<<<<<< HEAD
+=======
+
+>>>>>>> entity-project
 
     }
 }

@@ -1,9 +1,15 @@
 package com.noCountry.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+<<<<<<< HEAD
 import com.noCountry.webApp.util.Prioridad;
 import com.noCountry.webApp.util.Estado;
 
+=======
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.noCountry.webApp.util.Priority;
+import com.noCountry.webApp.util.Status;
+>>>>>>> entity-project
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +17,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -34,18 +41,22 @@ public class Project implements Serializable {
     private Long id;
 
     @Column(length = 50)
-    private String nombre;
+    private String name;
 
     @Column(length = 150)
-    private String descripcion;
+    private String description;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate fechaCreacion;
+    private LocalDate creationDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate fechaVencimiento;
+    private LocalDate expirationDate;
+
+    @Column(length = 255)
+    private String comment;
 
     @Enumerated(EnumType.STRING)
+<<<<<<< HEAD
     private Prioridad prioridad;
 
     @Enumerated(EnumType.STRING)
@@ -109,5 +120,15 @@ public class Project implements Serializable {
 	}
 
 
+=======
+    private Priority priority;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @JsonIgnoreProperties({"projects", "hibernateLazyInitializer", "handler"})
+    @ManyToOne
+    private User user;
+>>>>>>> entity-project
 
 }
