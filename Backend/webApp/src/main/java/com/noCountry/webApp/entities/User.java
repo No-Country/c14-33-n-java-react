@@ -21,7 +21,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "usuario") // luego modificar tiene problema con h2 console el user
+@Entity(name = "user")
 @Getter
 @Setter
 @AllArgsConstructor
