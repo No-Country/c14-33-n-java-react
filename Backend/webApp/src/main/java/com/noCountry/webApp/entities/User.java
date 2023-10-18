@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "user")
+@Entity(name = "usuario") // luego modificar tiene problema con h2 console el user
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String userName;
     private String email;
     private String password;
