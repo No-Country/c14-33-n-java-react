@@ -1,15 +1,9 @@
 package com.noCountry.webApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-<<<<<<< HEAD
-import com.noCountry.webApp.util.Prioridad;
-import com.noCountry.webApp.util.Estado;
-
-=======
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.noCountry.webApp.util.Priority;
 import com.noCountry.webApp.util.Status;
->>>>>>> entity-project
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -34,9 +28,7 @@ import lombok.Setter;
 @Builder
 public class Project implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -56,71 +48,6 @@ public class Project implements Serializable {
     private String comment;
 
     @Enumerated(EnumType.STRING)
-<<<<<<< HEAD
-    private Prioridad prioridad;
-
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
-
-    
-   
-	
-
-	public static Object builder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public LocalDate getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setFechaCreacion(LocalDate fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public LocalDate getFechaVencimiento() {
-		return fechaVencimiento;
-	}
-
-	public void setFechaVencimiento(LocalDate fechaVencimiento) {
-		this.fechaVencimiento = fechaVencimiento;
-	}
-
-	public Prioridad getPrioridad() {
-		return prioridad;
-	}
-
-	public void setPrioridad(Prioridad prioridad) {
-		this.prioridad = prioridad;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-
-=======
     private Priority priority;
 
     @Enumerated(EnumType.STRING)
@@ -129,6 +56,5 @@ public class Project implements Serializable {
     @JsonIgnoreProperties({"projects", "hibernateLazyInitializer", "handler"})
     @ManyToOne
     private User user;
->>>>>>> entity-project
 
 }

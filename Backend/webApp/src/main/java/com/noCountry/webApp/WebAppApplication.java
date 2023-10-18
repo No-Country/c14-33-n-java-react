@@ -2,8 +2,8 @@ package com.noCountry.webApp;
 
 import com.noCountry.webApp.entities.Project;
 import com.noCountry.webApp.repositories.ProjectRepository;
-import com.noCountry.webApp.util.Prioridad;
-import com.noCountry.webApp.util.Estado;
+import com.noCountry.webApp.util.Priority;
+import com.noCountry.webApp.util.Status;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -22,24 +22,6 @@ public class WebAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-<<<<<<< HEAD
-        var project1 = Project.builder()
-            .nombre("Nombre 1 ")
-            .descripcion("Descripcion 1......")
-            .fechaCreacion(LocalDate.now())
-            .fechaVencimiento(LocalDate.now())
-            .prioridad(Prioridad.MEDIUM)
-            .estado(Estado.IN_PROGRESS)
-            .build();
-
-        var project2 = Project.builder()
-            .nombre("Nombre 2 ")
-            .descripcion("Descripcion 2......")
-            .fechaCreacion(LocalDate.now())
-            .fechaVencimiento(LocalDate.now())
-            .prioridad(Priority.MEDIUM)
-            .estado(Status.IN_PROGRESS)
-=======
 
         var project1 = Project.builder()
             .name("Nombre 1 ")
@@ -59,15 +41,10 @@ public class WebAppApplication implements CommandLineRunner {
             .priority(Priority.MEDIUM)
             .status(Status.IN_PROGRESS)
             .comment("Comentario2 lorem .sdasd")
->>>>>>> entity-project
             .build();
 
         repository.save(project1);
         repository.save(project2);
-<<<<<<< HEAD
-=======
-
->>>>>>> entity-project
 
     }
 }
