@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @AllArgsConstructor
 public class WebAppApplication implements CommandLineRunner {
 
-    private final ProjectRepository repository = null;
+    private final ProjectRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(WebAppApplication.class, args);
@@ -22,26 +22,30 @@ public class WebAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        var project1 = Project.builder()
-//            .nombre("Nombre 1 ")
-//            .descripcion("Descripcion 1......")
-//            .fechaCreacion(LocalDate.now())
-//            .fechaVencimiento(LocalDate.now())
-//            .prioridad(Priority.MEDIUM)
-//            .estado(Status.IN_PROGRESS)
-//            .build();
-//
-//        var project2 = Project.builder()
-//            .nombre("Nombre 2 ")
-//            .descripcion("Descripcion 2......")
-//            .fechaCreacion(LocalDate.now())
-//            .fechaVencimiento(LocalDate.now())
-//            .prioridad(Priority.MEDIUM)
-//            .estado(Status.IN_PROGRESS)
-//            .build();
-//
-//        repository.save(project1);
-//        repository.save(project2);
+
+        var project1 = Project.builder()
+            .name("Nombre 1 ")
+            .description("Descripcion 1......")
+            .creationDate(LocalDate.now())
+            .expirationDate(LocalDate.now())
+            .priority(Priority.MEDIUM)
+            .status(Status.IN_PROGRESS)
+            .comment("Comentariooooooooo loremusssss")
+            .build();
+
+        var project2 = Project.builder()
+            .name("Nombre 2 ")
+            .description("Descripcion 2......")
+            .creationDate(LocalDate.now())
+            .expirationDate(LocalDate.now())
+            .priority(Priority.MEDIUM)
+            .status(Status.IN_PROGRESS)
+            .comment("Comentario2 lorem .sdasd")
+            .build();
+
+        repository.save(project1);
+        repository.save(project2);
+
 
     }
 }

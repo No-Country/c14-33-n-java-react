@@ -1,5 +1,6 @@
 package com.noCountry.webApp.services;
 
+import com.noCountry.webApp.dto.ProjectRequest;
 import com.noCountry.webApp.entities.Project;
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,9 @@ public interface ProjectService {
 
     Optional<Project> findById(Long id);
 
-    Project save(Project project);
+    Project save(ProjectRequest request, Long userId);
 
-    Optional<Project> update(Project project, Long id);
+    Optional<Project> update(ProjectRequest request, Long projectId, Long userId);
 
     void remove(Long id);
 }
