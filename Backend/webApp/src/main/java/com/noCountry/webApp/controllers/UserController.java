@@ -2,6 +2,7 @@ package com.noCountry.webApp.controllers;
 
 import com.noCountry.webApp.dto.UserRequest;
 import com.noCountry.webApp.entities.User;
+import com.noCountry.webApp.exceptions.NotFoundException;
 import com.noCountry.webApp.services.UserService;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -32,8 +33,7 @@ public class UserController {
     public ResponseEntity<?> show(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
         if (user.isEmpty()) {
-            //throw new UserNotFoundException("users", "id", id);
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("users", "id", id);
         }
         return ResponseEntity.ok(user);
     }
@@ -48,8 +48,7 @@ public class UserController {
     public ResponseEntity<?> update(@RequestBody UserRequest request, @PathVariable Long id) {
         Optional<User> searchedUser = userService.findById(id);
         if (searchedUser.isEmpty()) {
-            //throw new UserNotFoundException("users", "id", id);
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("users", "id", id);
         }
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(userService.update(request, id));
@@ -59,8 +58,7 @@ public class UserController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
         if (user.isEmpty()) {
-            //throw new UserNotFoundException("users", "id", id);
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("users", "id", id);
         }
         userService.remove(id);
         return ResponseEntity.noContent().build();

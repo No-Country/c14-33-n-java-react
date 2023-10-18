@@ -2,6 +2,7 @@ package com.noCountry.webApp.controllers;
 
 import com.noCountry.webApp.dto.ProjectRequest;
 import com.noCountry.webApp.entities.Project;
+import com.noCountry.webApp.exceptions.NotFoundException;
 import com.noCountry.webApp.services.ProjectService;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class ProjectController {
     public ResponseEntity<?> show(@PathVariable Long id) {
         Optional<Project> project = service.findById(id);
         if (project.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("projects", "id", id);
         }
         return ResponseEntity.ok(project);
     }
@@ -43,8 +44,7 @@ public class ProjectController {
         @PathVariable Long userId) {
         var project = service.save(request, userId);
         if (project == null) {
-            //throw new NotFoundException("projects", "id", project.getId());
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("projects", "id", project.getId());
         }
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(project);
@@ -56,8 +56,7 @@ public class ProjectController {
         @PathVariable Long userId) {
         Optional<Project> searchedProject = service.findById(projectId);
         if (searchedProject.isEmpty()) {
-            //throw new NotFoundException("books", "id", bookId);
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("projects", "id", projectId);
         }
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(service.update(request, projectId, userId));
@@ -67,7 +66,7 @@ public class ProjectController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Optional<Project> user = service.findById(id);
         if (user.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException("projects", "id", id);
         }
         service.remove(id);
         return ResponseEntity.noContent().build();
