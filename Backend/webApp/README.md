@@ -22,6 +22,20 @@ Para utilizar la API REST en tu entorno local, sigue estos pasos:
 - **Crear User**: `POST /api/users`
 - **Actualizar User por ID**: `PUT /api/users/{id}`
 - **Eliminar User por ID**: `DELETE /api/users/{id}`
+  
+### Task
+- **Listar Task**: `GET /api/tasks`
+- **Obtener Task por ID**: `GET /api/tasks/{id}`
+- **Crear Task**: `POST /api/tasks/projects/{projectId}`
+- **Actualizar Task por ID**: `PUT /api/tasks/{taskId}/projects/{projectId}`
+- **Eliminar Task por ID**: `DELETE /api/tasks/{id}`
+
+### Project
+- **Listar Project**: `GET /api/projects`
+- **Obtener Project por ID**: `GET /api/projects/{id}`
+- **Crear Project**: `POST /api/projects/users/{userId}`
+- **Actualizar Project por ID**: `PUT /api/projects/{projectId}/users/{userId}`
+- **Eliminar Project por ID**: `DELETE /api/projects/{id}`
 
 ## Ejemplos de uso
 ### Listar Users
