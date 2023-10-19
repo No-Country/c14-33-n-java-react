@@ -17,25 +17,25 @@ Para utilizar la API REST en tu entorno local, sigue estos pasos:
 
 ## Endpoints
 ### User
-- **Listar User**: `GET /api/users`
-- **Obtener User por ID**: `GET /api/users/{id}`
-- **Crear User**: `POST /api/users`
-- **Actualizar User por ID**: `PUT /api/users/{id}`
-- **Eliminar User por ID**: `DELETE /api/users/{id}`
+- **Listar**: `GET /api/users`
+- **Obtener por ID**: `GET /api/users/{id}`
+- **Crear**: `POST /api/users`
+- **Actualizar por ID**: `PUT /api/users/{id}`
+- **Eliminar por ID**: `DELETE /api/users/{id}`
   
 ### Task
-- **Listar Task**: `GET /api/tasks`
-- **Obtener Task por ID**: `GET /api/tasks/{id}`
-- **Crear Task**: `POST /api/tasks/projects/{projectId}`
-- **Actualizar Task por ID**: `PUT /api/tasks/{taskId}/projects/{projectId}`
-- **Eliminar Task por ID**: `DELETE /api/tasks/{id}`
+- **Listar**: `GET /api/tasks`
+- **Obtener por ID**: `GET /api/tasks/{id}`
+- **Crear**: `POST /api/tasks/projects/{projectId}`
+- **Actualizar por ID**: `PUT /api/tasks/{taskId}/projects/{projectId}`
+- **Eliminar por ID**: `DELETE /api/tasks/{id}`
 
 ### Project
-- **Listar Project**: `GET /api/projects`
-- **Obtener Project por ID**: `GET /api/projects/{id}`
-- **Crear Project**: `POST /api/projects/users/{userId}`
-- **Actualizar Project por ID**: `PUT /api/projects/{projectId}/users/{userId}`
-- **Eliminar Project por ID**: `DELETE /api/projects/{id}`
+- **Listar**: `GET /api/projects`
+- **Obtener por ID**: `GET /api/projects/{id}`
+- **Crear**: `POST /api/projects/users/{userId}`
+- **Actualizar por ID**: `PUT /api/projects/{projectId}/users/{userId}`
+- **Eliminar por ID**: `DELETE /api/projects/{id}`
 
 ## Ejemplos de uso
 ### Listar Users
