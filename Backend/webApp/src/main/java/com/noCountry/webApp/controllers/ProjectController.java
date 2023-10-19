@@ -54,8 +54,8 @@ public class ProjectController {
     public ResponseEntity<?> update(@RequestBody ProjectRequest request,
         @PathVariable Long projectId,
         @PathVariable Long userId) {
-        Optional<Project> searchedProject = service.findById(projectId);
-        if (searchedProject.isEmpty()) {
+        Optional<Project> project = service.findById(projectId);
+        if (project.isEmpty()) {
             throw new NotFoundException("projects", "id", projectId);
         }
         return ResponseEntity.status(HttpStatus.CREATED)
