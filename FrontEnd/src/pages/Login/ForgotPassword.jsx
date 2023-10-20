@@ -1,12 +1,38 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
+import Alert from "../../components/Alert"
+import axios from "axios"
 
-Link
 const ForgotPassword = () => {
+  const [email,setEmail]=useState('')
+  const handleSubmit=async e =>{
+  const [alert,setAlert]=useState({})
+  
+    e.prevenDefault();
+    if (email===''||email.length<10){
+      setAlert({
+        msg:'La dirección de correo es obligatoria',
+        error:true
+      })
+      return
+    }
+    try {
+      const {data} = await axios.post(``)
+    } catch (error) {
+    
+    }
+  }
+
+  const{msg}=alert
+
   return (
     <>
       <h1 className="text-black font-black rounded-t-xl text-4xl capitalize bg-slate-500 p-5">Escribe tu email para recuperar {''}
       <span className="text-gray-100">Tu cuenta</span></h1>
-      <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black">
+      {msg&&<Alert alert={alert}/>}
+      <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black"
+      onSubmit={handleSubmit}>
+        
         <div className="my-5">
           <label className="uppercase text-gray-700 block text-xl "
           >Email</label>
@@ -17,11 +43,12 @@ const ForgotPassword = () => {
           className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
-          focus:invalid:border-red-500"          
+          focus:invalid:border-red-500"
+          onChange={e=>setEmail(e.target.value)}       
           />
           <p className="mt-2 invisible peer-invalid:visible text-red-400 text-sm ml-1 ">
             Porfavor ingrese una dirección de correo valida.
-          </p>
+          </p>          
         </div>
         
         <input 

@@ -22,3 +22,40 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Carpeta de dependencias
+node_modules/
+
+# Carpeta de archivos generados
+build/
+dist/
+out/
+
+# Archivos generados por herramientas de desarrollo
+yarn-error.log
+npm-debug.log
+
+# Archivos de entorno local (por ejemplo, para .env)
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archivo de logs y archivos de caché generados por herramientas de desarrollo
+log.txt
+.cachefolder/
+
+# Archivo de configuración de editor
+.vscode/
+
+# Archivo de configuración de IDE
+.idea/
+
+# Archivo de configuración de Windows
+Thumbs.db
+Desktop.ini
+
+# Archivos temporales generados por sistemas operativos
+.DS_Store
+ehthumbs.db
+Icon?
