@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import Alert from "../../components/Alert"
-
+import axiosClient from "../../config/axiosClient"
 
 
 const ConfirmAccount = () => {
@@ -14,7 +14,8 @@ const ConfirmAccount = () => {
   useEffect(()=>{
     const confirmAccount = async () =>{
       try {
-        const url = `colocar url de confirmacion del back con el id`
+        const url = `/user/confirm/${id}`
+        const {data}=await axiosClient(url)
 
         setAlert({
           msg: data.msg,

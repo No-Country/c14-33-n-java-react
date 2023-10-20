@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import Alert from "../../components/Alert"
+import axiosClient from "../../config/axiosClient"
 
 
 const NewPassword = async () => {
@@ -19,7 +19,7 @@ const NewPassword = async () => {
   useEffect(()=>{
     const checkToken=async()=>{
       try {
-        const {data}= await axios(`http://${token}`)/* direccion del la seccion back */
+        const {data}= await axiosClient(`/user/forgot-password/${token}`)/* direccion del la seccion back */
         console.log(data)/* checkear */
         setValidToken(true)
       } catch (error) {
@@ -46,7 +46,7 @@ const NewPassword = async () => {
   }
 
   try {
-    const url=`http://${token}`/* poner url */
+    const url=`/user/forgot-password/${token}`
     const{data}=await axios.post(url,{password})
     setAlert({
       msg:data.msg,

@@ -1,13 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import Alert from "../../components/Alert"
-import axios from "axios"
+import axiosClient from "../../config/axiosClient"
 
 const ForgotPassword = () => {
   const [email,setEmail]=useState('')
-  const handleSubmit=async e =>{
   const [alert,setAlert]=useState({})
-  
+
+  const handleSubmit=async e =>{
+
     e.prevenDefault();
     if (email===''||email.length<10){
       setAlert({
@@ -17,9 +18,16 @@ const ForgotPassword = () => {
       return
     }
     try {
-      const {data} = await axios.post(``)
+      const {data} = await axiosClient.post('/user/forgot-password',{email})
+      setAlert({
+        msg:data.msg,
+        error:false
+      })
     } catch (error) {
-    
+    setAlert({
+      msg:error.response.data.msg,
+      error:true
+    })
     }
   }
 
