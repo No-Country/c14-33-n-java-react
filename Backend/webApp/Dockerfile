@@ -1,10 +1,10 @@
 FROM maven:3.8.3-openjdk-17 AS build
-WORKDIR /webApp
-COPY . /webApp/
+WORKDIR /app
+COPY . /app/
 RUN mvn clean package
 
 FROM openjdk:17-alpine
-WORKDIR /webApp
-COPY --from=build /webApp/target/*.jar /webApp/webApp.jar
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
