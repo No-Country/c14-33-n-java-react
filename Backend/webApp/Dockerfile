@@ -1,10 +1,4 @@
-FROM maven:3.8.3-openjdk-17 AS build
-WORKDIR /webApp
-COPY . /webApp/
-RUN mvn clean package
-
 FROM openjdk:17-alpine
-WORKDIR /app
-COPY --from=build /webApp/target/*.jar /webApp/webApp.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "webApp.jar"]
+MAINTAINER ALE94
+COPY /target/webApp-0.0.1-SNAPSHOT.jar task-app.jar
+ENTRYPOINT ["java", "-jar", "task-app.jar"]
