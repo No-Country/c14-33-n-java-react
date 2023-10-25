@@ -1,10 +1,9 @@
 package com.noCountry.webApp.controllers;
 
-import com.noCountry.webApp.dto.UserRequest;
-import com.noCountry.webApp.entities.User;
-import com.noCountry.webApp.exceptions.NotFoundException;
+import com.noCountry.webApp.dto.request.UserRequest;
+import com.noCountry.webApp.dto.response.UserResponse;
 import com.noCountry.webApp.services.UserService;
-import java.util.Optional;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,42 +24,29 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/users")
-    public ResponseEntity<?> list() {
+    public ResponseEntity<List<UserResponse>> list() {
         return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<?> show(@PathVariable Long id) {
-        Optional<User> user = userService.findById(id);
-        if (user.isEmpty()) {
-            throw new NotFoundException("users", "id", id);
-        }
-        return ResponseEntity.ok(user);
+    public ResponseEntity<UserResponse> show(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.findById(id));
     }
 
     @PostMapping("/users")
-    public ResponseEntity<?> create(@RequestBody UserRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(userService.save(request));
+    public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(request));
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> update(@RequestBody UserRequest request, @PathVariable Long id) {
-        Optional<User> searchedUser = userService.findById(id);
-        if (searchedUser.isEmpty()) {
-            throw new NotFoundException("users", "id", id);
-        }
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(userService.update(request, id));
+    public ResponseEntity<UserResponse> update(@RequestBody UserRequest request,
+        @PathVariable Long id) {
+        return ResponseEntity.ok(userService.update(request, id));
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        Optional<User> user = userService.findById(id);
-        if (user.isEmpty()) {
-            throw new NotFoundException("users", "id", id);
-        }
-        userService.remove(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.userService.remove(id);
         return ResponseEntity.noContent().build();
     }
 

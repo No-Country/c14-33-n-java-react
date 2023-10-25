@@ -1,19 +1,18 @@
 package com.noCountry.webApp.services;
 
-import com.noCountry.webApp.dto.UserRequest;
-import com.noCountry.webApp.entities.User;
+import com.noCountry.webApp.dto.request.UserRequest;
+import com.noCountry.webApp.dto.response.UserResponse;
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<UserResponse> findAll();
 
-    Optional<User> findById(Long id);
+    UserResponse findById(Long id);
 
-    User save(UserRequest request);
+    UserResponse save(UserRequest request);
 
-    Optional<User> update(UserRequest request, Long id);
+    UserResponse update(UserRequest request, Long id);
 
     void remove(Long id);
 

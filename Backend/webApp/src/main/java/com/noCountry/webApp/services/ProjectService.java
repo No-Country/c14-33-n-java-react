@@ -1,19 +1,16 @@
 package com.noCountry.webApp.services;
 
-import com.noCountry.webApp.dto.ProjectRequest;
-import com.noCountry.webApp.entities.Project;
+import com.noCountry.webApp.dto.request.ProjectRequest;
+import com.noCountry.webApp.dto.response.ProjectResponse;
 import java.util.List;
-import java.util.Optional;
 
 public interface ProjectService {
 
-    List<Project> findAll();
+    List<ProjectResponse> projectByUserId(Long userId);
 
-    Optional<Project> findById(Long id);
+    ProjectResponse save(ProjectRequest request, Long userId);
 
-    Project save(ProjectRequest request, Long userId);
+    ProjectResponse update(ProjectRequest request, Long userId, Long projectId);
 
-    Optional<Project> update(ProjectRequest request, Long projectId, Long userId);
-
-    void remove(Long id);
+    void removeByUserId(Long userId, Long projectId);
 }

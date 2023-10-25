@@ -1,11 +1,9 @@
 package com.noCountry.webApp.controllers;
 
-import com.noCountry.webApp.dto.ProjectRequest;
-import com.noCountry.webApp.entities.Project;
-import com.noCountry.webApp.exceptions.NotFoundException;
+import com.noCountry.webApp.dto.request.ProjectRequest;
+import com.noCountry.webApp.dto.response.ProjectResponse;
 import com.noCountry.webApp.services.ProjectService;
 import java.util.List;
-import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,50 +23,28 @@ public class ProjectController {
 
     private final ProjectService service;
 
-    @GetMapping("/projects")
-    public List<Project> list() {
-        return service.findAll();
+    @GetMapping("users/{userId}/projects")
+    public ResponseEntity<List<ProjectResponse>> projectByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(this.service.projectByUserId(userId));
     }
 
-    @GetMapping("/projects/{id}")
-    public ResponseEntity<?> show(@PathVariable Long id) {
-        Optional<Project> project = service.findById(id);
-        if (project.isEmpty()) {
-            throw new NotFoundException("projects", "id", id);
-        }
-        return ResponseEntity.ok(project);
-    }
-
-    @PostMapping("/projects/users/{userId}")
-    public ResponseEntity<?> create(@RequestBody ProjectRequest request,
+    @PostMapping("/users/{userId}/projects")
+    public ResponseEntity<ProjectResponse> create(@RequestBody ProjectRequest request,
         @PathVariable Long userId) {
-        var project = service.save(request, userId);
-        if (project == null) {
-            throw new NotFoundException("projects", "id", project.getId());
-        }
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(project);
+            .body(this.service.save(request, userId));
     }
 
-    @PutMapping("/projects/{projectId}/users/{userId}")
-    public ResponseEntity<?> update(@RequestBody ProjectRequest request,
-        @PathVariable Long projectId,
-        @PathVariable Long userId) {
-        Optional<Project> project = service.findById(projectId);
-        if (project.isEmpty()) {
-            throw new NotFoundException("projects", "id", projectId);
-        }
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(service.update(request, projectId, userId));
+    @PutMapping("/users/{userId}/projects/{projectId}")
+    public ResponseEntity<ProjectResponse> update(@RequestBody ProjectRequest request,
+        @PathVariable Long userId,
+        @PathVariable Long projectId) {
+        return ResponseEntity.ok(this.service.update(request, userId, projectId));
     }
 
-    @DeleteMapping("/projects/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        Optional<Project> user = service.findById(id);
-        if (user.isEmpty()) {
-            throw new NotFoundException("projects", "id", id);
-        }
-        service.remove(id);
+    @DeleteMapping("users/{userId}/projects/{projectId}")
+    public ResponseEntity<Void> removeByUserId(@PathVariable Long userId, Long projectId) {
+        this.service.removeByUserId(userId, projectId);
         return ResponseEntity.noContent().build();
     }
 

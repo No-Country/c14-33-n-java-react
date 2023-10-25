@@ -34,15 +34,14 @@ public class User implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
     private String userName;
     private String password;
+    private String email;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
     private String imagePerfil;
     private String phone;
-    private String address;
 
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
