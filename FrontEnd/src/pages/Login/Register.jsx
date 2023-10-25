@@ -11,6 +11,7 @@ const Register = () => {
     const[repeatPassword,setRepeatPassword]=useState('')
     /* creamos la constante para la alerta */
     const[alert,setAlert]=useState({})
+    
     /* funcion para el envio del formulario */
     const handleSubmit = async e =>{
       e.preventDefault();

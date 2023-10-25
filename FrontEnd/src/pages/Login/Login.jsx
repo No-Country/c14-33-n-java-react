@@ -1,12 +1,55 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import Alert from "../../components/Alert"
+import axiosClient from "../../config/axiosClient"
+import useAuth from "../../hooks/useAuth"
 
 
 const Login = () => {
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const [alert,setAlert]=useState({})
+
+  const{setAuth}=useAuth()
+
+  const handleSubmit=async e =>{
+    e.preventDefault();
+    if([email,password].includes('')){
+      setAlert({
+        msg:'Todos los campos son obligatorios',
+        error:true
+      })
+      return
+    }
+    try {
+      const {data} = await axiosClient.post('/user/login',{email,password})
+      setAlert({
+        msg:data.msg,
+        error:false
+      })
+      localStorage.setItem('token',data.token)
+      setAuth(data)
+    } catch (error) {
+      setAlert({
+        msg:error.response.data.msg,
+        error:true
+      })
+    }
+  }
+
+  const{msg}=alert
+
   return (
+    
     <>
       <h1 className="text-sky-950 font-black rounded-t-xl text-4xl capitalize bg-emerald-600 bg-opacity-50 p-5">Para acceder a tu lugar de trabajo {''}
       <span className="text-gray-100">Inicia sesión</span></h1>
-      <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black">
+
+      {msg&&<Alert alert={alert}/>}
+
+      <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black"
+      onSubmit={hadleSubmit}
+      >
         <div className="my-5">
           <label className="uppercase text-gray-700 block text-xl "
           >Email</label>
@@ -17,7 +60,9 @@ const Login = () => {
           className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
-          focus:invalid:border-red-500"          
+          focus:invalid:border-red-500"        
+          value={email}
+          onChange={e=>setEmail(e.target.value)}  
           />
           
           <p className="mt-2 invisible peer-invalid:visible text-red-400 text-sm ml-1 ">
@@ -31,7 +76,9 @@ const Login = () => {
           <input
           type="password"
           placeholder="Ingrese su contraseña"
-          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"          
+          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"   
+          value={password}
+          onChange={e=>setPassword(e.target.value)}       
           />
           
         </div>

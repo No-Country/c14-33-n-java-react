@@ -5,11 +5,16 @@ import Register from './pages/Login/Register';
 import ForgotPassword from './pages/Login/ForgotPassword';
 import NewPassword from './pages/Login/NewPassword';
 import ConfirmAccount from './pages/Login/ConfirmAccount';
+import { AuthProvider } from './context/AuthProvider';
+import ProtectedRoute from './layouts/ProtectedRoute';
+import WorkPlace from './pages/LugarDeTrabajo/WorkPlace';
+
 
 function App() {
 
-  return (
+  return (    
     <BrowserRouter>
+    <AuthProvider>
       <Routes>
         <Route path ='/' element={<AuthLayout/>}>
           <Route index element={<Login/>}/>
@@ -18,8 +23,14 @@ function App() {
           <Route path='forgot-password/:token' element={<NewPassword/>}/>
           <Route path='confirmar/:id' element={<ConfirmAccount/>}/>
         </Route>
+        <Routes path='/projects' element={<ProtectedRoute/>}>
+        <Route index element={<WorkPlace/>}/>
+        </Routes>
+
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
+    
   );
 }
 

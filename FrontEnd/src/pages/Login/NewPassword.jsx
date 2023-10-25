@@ -12,7 +12,7 @@ const NewPassword = async () => {
   
 
   const params=useParams()
-  const token=useParams()
+  const {token}=useParams()
   console.log(params)/* checkear */
 
 
@@ -47,7 +47,7 @@ const NewPassword = async () => {
 
   try {
     const url=`/user/forgot-password/${token}`
-    const{data}=await axios.post(url,{password})
+    const{data}=await axiosClient.post(url,{password})
     setAlert({
       msg:data.msg,
       error:false

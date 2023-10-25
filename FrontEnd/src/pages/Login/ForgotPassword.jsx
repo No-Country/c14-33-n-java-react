@@ -37,7 +37,9 @@ const ForgotPassword = () => {
     <>
       <h1 className="text-black font-black rounded-t-xl text-4xl capitalize bg-slate-500 p-5">Escribe tu email para recuperar {''}
       <span className="text-gray-100">Tu cuenta</span></h1>
+
       {msg&&<Alert alert={alert}/>}
+      
       <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black"
       onSubmit={handleSubmit}>
         
