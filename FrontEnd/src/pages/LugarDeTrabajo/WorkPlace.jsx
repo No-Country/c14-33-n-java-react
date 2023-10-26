@@ -1,5 +1,11 @@
-import React from "react";
+import React from 'react'
 
-export const WorkPlace = () => {
-  return <div>WorkPlace</div>;
-};
+const WorkPlace = () => {
+  return (
+    <div>
+      Lugar de trabajo
+    </div>
+  )
+}
+
+export default WorkPlace
