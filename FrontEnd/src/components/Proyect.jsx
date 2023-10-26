@@ -2,11 +2,7 @@ import React, {useState} from 'react'
 
 export default function Proyect({isActive, onClick}) {
 
-    /* const [isActive, setIsActive] = useState(false); */
-
-    /*  const handleClick = () => {
-      setIsActive(!isActive)
-    }; */
+    
 
     return (
         <>

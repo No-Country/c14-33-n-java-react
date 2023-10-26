@@ -8,12 +8,6 @@ import Proyect from '../../components/Proyect';
 
 export const WorkPlace = () => {
 
-    const [activeButton, setActiveButton] = useState(null);
-
-    const handleButtonClick = (buttonId) => {
-        setActiveButton(buttonId);}
-    
-    /* Codigo para el Modal */
     const [visible, setVisible] = useState(false);
 
     const [taskform, setTaskform] = useState(false);
@@ -36,24 +30,7 @@ export const WorkPlace = () => {
                 <div className="h-1 w-full bg-gray-400 rounded-2xl my-1"></div>
 
                 <div>
-                <Proyect isActive={
-                    activeButton === 1
-                }
-                onClick={
-                    () => handleButtonClick(1)
-                }/>
-            <Proyect isActive={
-                    activeButton === 2
-                }
-                onClick={
-                    () => handleButtonClick(2)
-                }/>
-            <Proyect isActive={
-                    activeButton === 3
-                }
-                onClick={
-                    () => handleButtonClick(3)
-                }/>
+                    <ProyectsList/>
                 </div>
 
             </div>
