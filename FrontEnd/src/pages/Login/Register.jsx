@@ -5,7 +5,9 @@ import axiosClient from "../../config/axiosClient"
 
 
 const Register = () => {
+    const[nickName,setNickName]=useState('')
     const[name,setName]=useState('')
+    const[lastName,setLastName]=useState('')
     const[email,setEmail]=useState('')
     const[password,setPasword]=useState('')
     const[repeatPassword,setRepeatPassword]=useState('')
@@ -16,7 +18,7 @@ const Register = () => {
     const handleSubmit = async e =>{
       e.preventDefault();
       /* hacemos que todos los campos sean obligatorios */
-      if([name,email,password,repeatPassword].includes('')){      
+      if([name,lastName,email,password,repeatPassword].includes('')){      
         setAlert({
           msg:'¡Todos los campos son obligatorios!',
           error : true
@@ -39,14 +41,16 @@ const Register = () => {
       }
       setAlert({})
       try {
-        const {data} = await axiosClient.post('/user',{name,email,password})
+        const {data} = await axiosClient.post('/users',{nickName,name,lastName,email,password})
         setAlert({
           /* llamamos al mensaje del back e igualamos error a false */
           msg: data.msg,
           error:false
         })
         /* reseteamos los valores de los campos */
+        setNickName('')
         setName('')
+        setLastName('')
         setEmail('')
         setPasword('')
         setRepeatPassword('')
@@ -64,8 +68,9 @@ const Register = () => {
 
   return (
     <>
-      <h1 className="text-sky-950q font-black rounded-t-xl text-4xl capitalize bg-cyan-600 bg-opacity-50 p-5">Crea tu cuenta y organiza tus {''}
-        <span className="text-gray-100">Proyectos y Tareas</span></h1>
+      <div>
+      <h1 className="text-sky-950q font-black rounded-t-xl text-4xl capitalize bg-cyan-600 bg-opacity-50 p-5">Crea tu cuenta y {''}
+        <span className="text-emerald-100">empieza a crear proyectos</span></h1>
 
       {/* ejecutamos la alerta */}
       {msg && <Alert alert={alert}/>}
@@ -87,7 +92,32 @@ const Register = () => {
             onChange={e=>setName(e.target.value)}
           />
         </div>
+        <div className="my-5 mb-10">
+          <label className="uppercase text-gray-700 block text-xl "
+            >Apellido</label>
 
+          <input
+            type="text"
+            placeholder="Ingrese su apellido"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            value={lastName}
+            onChange={e=>setLastName(e.target.value)}
+          />
+        </div>
+
+        <div className="my-5 mb-10">
+          <label className="uppercase text-gray-700 block text-xl "
+            >Apodo</label>
+
+          <input
+            type="text"
+            placeholder="Ingrese su apodo"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            value={nickName}
+            onChange={e=>setNickName(e.target.value)}
+          />
+        </div>
+        
         <div className="my-5">
           <label className="uppercase text-gray-700 block text-xl "
             >Email</label>
@@ -143,6 +173,7 @@ const Register = () => {
           to='/'>Ya tienes una cuenta? Inicia Sesión
         </Link>
       </nav>
+      </div>
 
     </>
   )
