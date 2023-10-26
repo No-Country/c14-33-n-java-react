@@ -48,7 +48,7 @@ const Login = () => {
       {msg&&<Alert alert={alert}/>}
 
       <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black"
-      onSubmit={hadleSubmit}
+      onSubmit={handleSubmit}
       >
         <div className="my-5">
           <label className="uppercase text-gray-700 block text-xl "
