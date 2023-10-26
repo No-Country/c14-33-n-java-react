@@ -23,9 +23,9 @@ function App() {
           <Route path='forgot-password/:token' element={<NewPassword/>}/>
           <Route path='confirmar/:id' element={<ConfirmAccount/>}/>
         </Route>
-        <Routes path='/projects' element={<ProtectedRoute/>}>
-        <Route index element={<WorkPlace/>}/>
-        </Routes>
+        <Route path='/projects' element={<ProtectedRoute/>}>
+          <Route index element={<WorkPlace/>}/>
+        </Route>
 
       </Routes>
       </AuthProvider>
