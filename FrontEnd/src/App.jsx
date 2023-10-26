@@ -7,7 +7,9 @@ import NewPassword from './pages/Login/NewPassword';
 import ConfirmAccount from './pages/Login/ConfirmAccount';
 import { AuthProvider } from './context/AuthProvider';
 import ProtectedRoute from './layouts/ProtectedRoute';
-import WorkPlace from './pages/LugarDeTrabajo/WorkPlace';
+import NewProject from './pages/LugarDeTrabajo/NewProject';
+import Projects from './components/projects';
+import { ProjectsProvider } from './context/ProjectsProvider';
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   return (    
     <BrowserRouter>
     <AuthProvider>
+      <ProjectsPro>
       <Routes>
         <Route path ='/' element={<AuthLayout/>}>
           <Route index element={<Login/>}/>
@@ -24,10 +27,12 @@ function App() {
           <Route path='confirmar/:id' element={<ConfirmAccount/>}/>
         </Route>
         <Route path='/projects' element={<ProtectedRoute/>}>
-          <Route index element={<WorkPlace/>}/>
+          <Route index element={<Projects/>}/>
+          <Route path='create-project' element={<NewProject/>}/>
         </Route>
 
       </Routes>
+      </ProjectsPro>
       </AuthProvider>
     </BrowserRouter>
     

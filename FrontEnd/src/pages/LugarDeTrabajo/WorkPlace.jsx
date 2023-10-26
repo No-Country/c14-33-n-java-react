@@ -99,3 +99,4 @@ export const WorkPlace = () => {
 
     </>;
 };
+export default WorkPlace
