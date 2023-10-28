@@ -5,8 +5,7 @@ import axiosClient from "../../config/axiosClient"
 
 
 const Register = () => {
-    const[nickName,setNickName]=useState('')
-    const[name,setName]=useState('')
+    const[firstName,setFirstName]=useState('')
     const[lastName,setLastName]=useState('')
     const[email,setEmail]=useState('')
     const[password,setPasword]=useState('')
@@ -18,7 +17,7 @@ const Register = () => {
     const handleSubmit = async e =>{
       e.preventDefault();
       /* hacemos que todos los campos sean obligatorios */
-      if([name,lastName,email,password,repeatPassword].includes('')){      
+      if([firstName,lastName,email,password,repeatPassword].includes('')){      
         setAlert({
           msg:'¡Todos los campos son obligatorios!',
           error : true
@@ -41,14 +40,13 @@ const Register = () => {
       }
       setAlert({})
       try {
-        const {data} = await axiosClient.post('/users',{nickName,name,lastName,email,password})
+        const {data} = await axiosClient.post('/users',{firstName,lastName,email,password})
         setAlert({
           /* llamamos al mensaje del back e igualamos error a false */
           msg: data.msg,
           error:false
         })
-        /* reseteamos los valores de los campos */
-        setNickName('')
+        /* reseteamos los valores de los campos */        
         setName('')
         setLastName('')
         setEmail('')
@@ -88,8 +86,8 @@ const Register = () => {
             type="text"
             placeholder="Ingrese su nombre"
             className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
-            value={name}
-            onChange={e=>setName(e.target.value)}
+            value={firstName}
+            onChange={e=>setFirstName(e.target.value)}
           />
         </div>
         <div className="my-5 mb-10">
@@ -102,19 +100,6 @@ const Register = () => {
             className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
             value={lastName}
             onChange={e=>setLastName(e.target.value)}
-          />
-        </div>
-
-        <div className="my-5 mb-10">
-          <label className="uppercase text-gray-700 block text-xl "
-            >Apodo</label>
-
-          <input
-            type="text"
-            placeholder="Ingrese su apodo"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
-            value={nickName}
-            onChange={e=>setNickName(e.target.value)}
           />
         </div>
         

@@ -17,7 +17,7 @@ function App() {
   return (    
     <BrowserRouter>
     <AuthProvider>
-      <ProjectsPro>
+      <ProjectsProvider>
       <Routes>
         <Route path ='/' element={<AuthLayout/>}>
           <Route index element={<Login/>}/>
@@ -32,7 +32,7 @@ function App() {
         </Route>
 
       </Routes>
-      </ProjectsPro>
+      </ProjectsProvider>
       </AuthProvider>
     </BrowserRouter>
     
