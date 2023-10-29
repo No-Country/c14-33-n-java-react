@@ -8,8 +8,8 @@ import ConfirmAccount from './pages/Login/ConfirmAccount';
 import { AuthProvider } from './context/AuthProvider';
 import ProtectedRoute from './layouts/ProtectedRoute';
 import NewProject from './pages/LugarDeTrabajo/NewProject';
-import Projects from './components/projects';
 import { ProjectsProvider } from './context/ProjectsProvider';
+import Projects from './components/Projects';
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
         <Route path='/projects' element={<ProtectedRoute/>}>
           <Route index element={<Projects/>}/>
           <Route path='create-project' element={<NewProject/>}/>
+          <Route path=':id' element={<Project/>}/>
         </Route>
 
       </Routes>

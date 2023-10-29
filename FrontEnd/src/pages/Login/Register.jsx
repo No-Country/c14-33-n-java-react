@@ -5,6 +5,7 @@ import axiosClient from "../../config/axiosClient"
 
 
 const Register = () => {
+    const[userName,setUserName]=useState('')
     const[firstName,setFirstName]=useState('')
     const[lastName,setLastName]=useState('')
     const[email,setEmail]=useState('')
@@ -17,7 +18,7 @@ const Register = () => {
     const handleSubmit = async e =>{
       e.preventDefault();
       /* hacemos que todos los campos sean obligatorios */
-      if([firstName,lastName,email,password,repeatPassword].includes('')){      
+      if([userName,firstName,lastName,email,password,repeatPassword].includes('')){      
         setAlert({
           msg:'¡Todos los campos son obligatorios!',
           error : true
@@ -47,6 +48,7 @@ const Register = () => {
           error:false
         })
         /* reseteamos los valores de los campos */        
+        setUserName('')
         setName('')
         setLastName('')
         setEmail('')
@@ -78,6 +80,18 @@ const Register = () => {
       onSubmit={handleSubmit}
       >
 
+        <div className="my-5 mb-10">
+          <label className="uppercase text-gray-700 block text-xl "
+            >Alias</label>
+
+          <input
+            type="text"
+            placeholder="Ingrese su nombre"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            value={userName}
+            onChange={e=>setUserName(e.target.value)}
+          />
+        </div>
         <div className="my-5 mb-10">
           <label className="uppercase text-gray-700 block text-xl "
             >Nombre</label>

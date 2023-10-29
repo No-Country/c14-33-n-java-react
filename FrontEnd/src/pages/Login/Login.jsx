@@ -22,7 +22,7 @@ const Login = () => {
       return
     }
     try {
-      const {data} = await axiosClient.post('/user/login',{email,password})
+      const {data} = await axiosClient.post('/user',{email,password})
       setAlert({
         msg:data.msg,
         error:false

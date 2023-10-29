@@ -10,7 +10,7 @@ const ProjectForm = () => {
 
     const{showAlert, alert, submitProject}=useProjects()
 
-    const handleSubmit=e=>{
+    const handleSubmit= async e=>{
         e.preventDefault()
 
         if([name,description,deliveryDate,client].includes('')){
@@ -21,7 +21,7 @@ const ProjectForm = () => {
             return
         }
 
-        submitProject({name,description,deliveryDate,client})
+        await submitProject({name,description,deliveryDate,client})
 
     }
 
