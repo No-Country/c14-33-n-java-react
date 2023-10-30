@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins={"http://localhost:5173"})
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(originPatterns = "*")
 public class UserController {
 
     private final UserService userService;
@@ -51,5 +51,5 @@ public class UserController {
         this.userService.remove(id);
         return ResponseEntity.noContent().build();
     }
-
+    
 }

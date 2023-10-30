@@ -10,6 +10,7 @@ import ProtectedRoute from './layouts/ProtectedRoute';
 import NewProject from './pages/LugarDeTrabajo/NewProject';
 import { ProjectsProvider } from './context/ProjectsProvider';
 import Projects from './components/Projects';
+import Project from './components/Project';
 
 
 function App() {

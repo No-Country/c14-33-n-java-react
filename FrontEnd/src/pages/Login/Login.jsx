@@ -22,7 +22,7 @@ const Login = () => {
       return
     }
     try {
-      const {data} = await axiosClient.post('/user',{email,password})
+      const {data} = await axiosClient.post('/users',{email,password})
       setAlert({
         msg:data.msg,
         error:false
@@ -30,9 +30,10 @@ const Login = () => {
       localStorage.setItem('token',data.token)
       setAuth(data)
     } catch (error) {
+      console.log('que miras capo?')
       setAlert({
         msg:error.response.data.msg,
-        error:true
+        error:true        
       })
     }
   }
