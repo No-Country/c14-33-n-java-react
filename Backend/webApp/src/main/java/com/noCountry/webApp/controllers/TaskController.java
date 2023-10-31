@@ -25,6 +25,7 @@ public class TaskController {
 
     private final TaskService taskService;
 
+
     @GetMapping("/projects/{projectId}/tasks")
     public ResponseEntity<List<TaskResponse>> taskByProjectId(@PathVariable Long projectId) {
         return ResponseEntity.ok(taskService.taskByProjectId(projectId));
