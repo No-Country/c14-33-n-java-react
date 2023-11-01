@@ -5,11 +5,17 @@ import TaskForm from "../../components/TaskForm";
 import ProyectsList from '../../components/ProyectsList';
 import TasksList from "../../components/TasksList";
 import Proyect from '../../components/Proyect';
+import MemberList from "../../components/MemberList";
 
 export const WorkPlace = () => {
 
-    const [visible, setVisible] = useState(false);
+    const [activeButton, setActiveButton] = useState(null);
 
+    const handleButtonClick = (buttonId) => {
+        setActiveButton(buttonId);
+    }
+
+    const [visible, setVisible] = useState(false);
     const [taskform, setTaskform] = useState(false);
 
     return <>
@@ -30,14 +36,16 @@ export const WorkPlace = () => {
                 <div className="h-1 w-full bg-gray-400 rounded-2xl my-1"></div>
 
                 <div>
-                    <ProyectsList/>
+                    
+                    <ProyectsList activeButton={activeButton} handleButtonClick={handleButtonClick}/>
+
                 </div>
 
             </div>
 
             <div className="row-span-3 col-span-3 p-5">
-                <div className="h-20 w-auto rounded-3xl bg-gray-500 p-5 flex justify-between">
-                    <h1 className="text-3xl">Proyecto X</h1>
+                <div className="h-20 w-auto rounded-3xl bg-gray-500 p-5 flex justify-between drop-shadow-[5px_5px_5px_rgba(0,0,0,0.50)]">
+                    <h1 className="text-3xl">Proyecto {activeButton}</h1>
                     <div className="bg-blue-600 p-2 m-1 rounded-md hover:bg-blue-900 cursor-pointer flex items-center"
                         onClick={
                             () => setTaskform(!taskform)
@@ -61,9 +69,9 @@ export const WorkPlace = () => {
                 <h1>Miembros</h1>
                 <div className="h-1 w-full bg-gray-400 rounded-2xl my-1"></div>
 
-                <Member/>
-                <Member/>
-                <Member/>
+                <div>
+                    <MemberList/>
+                </div>
 
             </div>
 

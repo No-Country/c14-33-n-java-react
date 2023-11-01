@@ -2,12 +2,8 @@ import React from 'react'
 import Proyect from './Proyect';
 import {useState} from 'react';
 
-export default function ProyectsList() {
-    const [activeButton, setActiveButton] = useState(null);
-
-    const handleButtonClick = (buttonId) => {
-        setActiveButton(buttonId);
-    }
+export default function ProyectsList({activeButton, handleButtonClick}) {
+    
 
     return (<>
 
