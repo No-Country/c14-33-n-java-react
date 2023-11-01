@@ -7,6 +7,8 @@ const ProjectsContext=createContext()
 const ProjectsProvider=({children})=>{
     const[projects,setProjects]=useState([])
     const[alert,setAlert]=useState([])
+    const[project,setProject]=useState([])
+    const[loading,setLoading]=useState(false)
 
     const navigate=useNavigate()
 
@@ -39,6 +41,31 @@ const ProjectsProvider=({children})=>{
     }
 
     const submitProject=async project =>{
+        if (project.id) {
+            editProject(project)
+        }else{
+            newProject(project)
+        }
+    }
+    const editProject= async(project)=>{
+        try {
+            const token=localStorage.getItem('token')
+            if(!token) return
+
+            const config={
+                headers:{
+                    'Content-Type':'application/json',
+                    Authorization:`Bearer ${token}`
+                }
+            }
+            const{data}=await axiosClient.put(`/projects/${project.id}`,project,config)
+            console.log(data)/* borrar */
+        } catch (error) {
+            console.log(error)/* borrar */
+        }
+        
+    }
+    const newProject= async(project)=>{
         try {
             const token=localStorage.getItem('token')
             if(!token) return
@@ -67,13 +94,40 @@ const ProjectsProvider=({children})=>{
             
         }
     }
+
+    /* obtenemos el proyecto */
+    const getProject = async id=>{
+        setLoading(true)
+        try {
+            const token=localStorage.getItem('token')
+            if(!token) return
+
+            const config={
+                headers:{
+                    'Content-Type':'application/json',
+                    Authorization:`Bearer ${token}`
+                }
+            }
+
+            const {data}=await axiosClient(`/projects/${id}`,config)
+            setProject(data)
+        } catch (error) {
+            console.log(error)
+        }finally{
+            setLoading(false)
+        }
+    }
+
     return(
         <ProjectsContext.Provider
         value={{
             projects,
             showAlert,
             alert,
-            submitProject
+            submitProject,
+            getProject,
+            project,
+            loading
         }}>
             {children}
         </ProjectsContext.Provider>

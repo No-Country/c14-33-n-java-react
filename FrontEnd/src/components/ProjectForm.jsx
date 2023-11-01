@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useProjects from '../hooks/useProjects'
-
+import { useParams } from 'react-router-dom'
+import Alert from './Alert'
 
 const ProjectForm = () => {
+    const[id,setId]=useState(null)
     const[name,setName]=useState('')
     const[description,setDescription]=useState('')
     const[deliveryDate ,setDeliveryDate]=useState('')
     const[client,setClient]=useState('')
-
-    const{showAlert, alert, submitProject}=useProjects()
-
+    
+    const params=useParams()
+    const{showAlert, alert, submitProject,project}=useProjects()
+    /* ----------------------------- */
+    useEffect(()=>{
+      if (params.id) {
+        setId(project._id)
+        setName(project.name)
+        setDescription(project.description)
+        /* el signo ? asegura que si project.deliveryDate no está definido, 
+        la expresión se detenga de manera segura sin lanzar un error  */
+        setDeliveryDate(project.deliveryDate?.split('T')[0])
+        setClient(project.client)
+      }
+    },{params})
+    /* ----------------------------- */
     const handleSubmit= async e=>{
         e.preventDefault()
 
@@ -21,7 +36,13 @@ const ProjectForm = () => {
             return
         }
 
-        await submitProject({name,description,deliveryDate,client})
+        await submitProject({id,name,description,deliveryDate,client})
+
+        setId(null)
+        setName('')
+        setDescription('')
+        setDeliveryDate('')
+        setClient('')
 
     }
 
@@ -74,7 +95,7 @@ const ProjectForm = () => {
         onChange={e=>setClient(e.target.value)}/>
       </div>
     <input type="submit" 
-    value='CreateProject'
+    value={id?'Update Project':'Create Project'}
     className='bg-teal-700 w-full p-3 uppercase font-bold text-white rounded cursor-pointer
     hover:bg-red-400 transition-colors'></input>
     </form>

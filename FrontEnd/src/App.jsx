@@ -11,7 +11,7 @@ import NewProject from './pages/LugarDeTrabajo/NewProject';
 import { ProjectsProvider } from './context/ProjectsProvider';
 import Projects from './components/Projects';
 import Project from './components/Project';
-
+import EditProject from './pages/LugarDeTrabajo/EditProject';
 
 function App() {
 
@@ -31,6 +31,7 @@ function App() {
           <Route index element={<Projects/>}/>
           <Route path='create-project' element={<NewProject/>}/>
           <Route path=':id' element={<Project/>}/>
+          <Route path='edit/:id' element={<EditProject/>}/>
         </Route>
 
       </Routes>
