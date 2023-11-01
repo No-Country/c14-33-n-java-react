@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(originPatterns = "*")
+//@CrossOrigin(origins = "http://localhost:5173")
 public class ProjectController {
 
     private final ProjectService service;
