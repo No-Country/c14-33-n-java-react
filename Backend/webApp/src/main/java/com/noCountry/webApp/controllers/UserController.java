@@ -37,11 +37,11 @@ public class UserController {
         return ResponseEntity.ok(userService.findById(id));
     }
 
-    @PostMapping("/")/* registro */
+    @PostMapping("/")
     public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(request));
     }
-    @PostMapping("/login")/* login */
+    @PostMapping("/login")
     public ResponseEntity<UserResponse> authenticate(@RequestBody UserRequest request) {
         String email = request.getEmail();
         String password = request.getPassword();
