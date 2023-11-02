@@ -1,17 +1,20 @@
 import React from 'react'
 import useProjects from '../hooks/useProjects'
 import infoProject from './infoProject'
+import Alert from './Alert'
 
 const Projects = () => {
 
-    const{projects}=useProjects()
-
+    const{projects,alert}=useProjects()
+    const { msg } = alert
 
   return (
     <>
             <h1 className='text-4xl font-black'>Proyectos</h1>
 
-            <div>
+            {msg&&<Alert alert={alert}/>}
+
+            <div className="bg-gray-100 shadow mt-10 rounded-md ">
                 {projects.length ? projects.map(project=>(
                   <infoProject
                   key={project._id}

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Alert from './Alert';
 import useProjects from '../hooks/useProjects';
 
-const PRIORIDAD = ['Baja', 'Media', 'Alta']
+const PRIORITY = ['Baja', 'Media', 'Alta']
 
 const TaskForm = () => {
 
@@ -170,19 +170,19 @@ const TaskForm = () => {
                                         <div className='mb-5'>
                                             <label
                                                 className='text-gray-700 uppercase font-bold text-sm' 
-                                                htmlFor='prioridad'
+                                                htmlFor='priority'
                                             >
                                                Prioridad
                                             </label>
                                             <select
-                                                id="prioridad"
+                                                id="priority"
                                                 className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
                                                 value={priority}
                                                 onChange={e => setPriority(e.target.value)}
                                             >
                                                 <option value="">-- Seleccionar --</option>
 
-                                                {PRIORIDAD.map( opcion => (
+                                                {PRIORITY.map( opcion => (
                                                     <option key={opcion}>{opcion}</option>
                                                 ))}
 

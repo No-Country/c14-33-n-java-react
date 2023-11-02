@@ -12,6 +12,7 @@ import { ProjectsProvider } from './context/ProjectsProvider';
 import Projects from './components/Projects';
 import Project from './components/Project';
 import EditProject from './pages/LugarDeTrabajo/EditProject';
+import NewMember from './pages/Perfil/NewMember';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/projects' element={<ProtectedRoute/>}>
           <Route index element={<Projects/>}/>
           <Route path='create-project' element={<NewProject/>}/>
+          <Route path="new-mamber/:id" element={<NewMember/>} />
           <Route path=':id' element={<Project/>}/>
           <Route path='edit/:id' element={<EditProject/>}/>
         </Route>
