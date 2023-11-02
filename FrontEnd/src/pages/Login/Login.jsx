@@ -9,8 +9,9 @@ const Login = () => {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const [alert,setAlert]=useState({})
-
   const{setAuth}=useAuth()
+
+  const navigate=useNavigate()
 
   const handleSubmit=async e =>{
     e.preventDefault();
@@ -22,13 +23,14 @@ const Login = () => {
       return
     }
     try {
-      const {data} = await axiosClient.post('/users',{email,password})
+      const {data} = await axiosClient.post('/login',{email,password})
       setAlert({
         msg:data.msg,
         error:false
       })
       localStorage.setItem('token',data.token)
       setAuth(data)
+      navigate('/projects')
     } catch (error) {
       console.log('que miras capo?')
       setAlert({

@@ -1,37 +1,209 @@
-import React, {useState} from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { useParams } from 'react-router-dom'
+import Alert from './Alert';
+import useProjects from '../hooks/useProjects';
 
-export default function Task({taskform, setTaskform}) {
+const PRIORIDAD = ['Baja', 'Media', 'Alta']
 
+const TaskForm = () => {
 
+    const [id, setId] = useState('')
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [deliveryDate, setDeliveryDate] = useState('')
+    const [priority, setPriority] = useState('')
+
+    const params = useParams()
+
+    const { modalFormTask, handleModalTask, showAlert, alert, submitTask, task } = useProjects();
+
+    useEffect(() => {
+        if(task?._id) {
+            setId(task._id)
+            setName(task.name)
+            setDescription(task.description)
+            setDeliveryDate(task.deliveryDate?.split('T')[0])
+            setPriority(task.priority)
+            return
+        } 
+        setId('')
+        setName('')
+        setDescription('')
+        setDeliveryDate('')
+        setPriority('')
+        
+    }, [task]);
+    
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        if([name, description, deliveryDate, priority].includes('') ) {
+            showAlert({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            })
+            return
+        }
+
+        await submitTask({id,name,description,deliveryDate,priority,proyecto:params.id})
+
+        setId('')
+        setName('')
+        setDescription('')
+        setDeliveryDate('')
+        setPriority('')
+    }
+
+    const {msg} = alert
+ 
     return (
-        <> {
-            taskform && <div className='bg-gray-900 bg-opacity-50 fixed h-screen w-screen flex justify-center items-center'>
-                <div className='bg-white rounded-lg w-1/4 h-auto p-2'>
-                    <form action="#" className='flex flex-col'>
-                        <div className='m-5 flex flex-col'>
-                            <label htmlFor="nombre">Nombre de la Tarea</label>
-                            <input className='border-2 border-gray-600 rounded-md p-1' type="text" name='nombre'/>
-                        </div>
+        <Transition.Root show={ modalFormTask } as={Fragment}>
+            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={ handleModalTask }>
+                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Dialog.Overlay 
+                            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" 
+                        />
+                    </Transition.Child>
 
-                        <div className='m-5 flex flex-col'>
-                            <label htmlFor="description">Descripcion</label>
-                            <textarea className='border-2 border-gray-600 rounded-md p-1' name="description" id="" cols="10" rows="5"></textarea>
-                        </div>
+                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+                        &#8203;
+                    </span>
 
-                        <div className='m-5 flex flex-col'>
-                            <label htmlFor="fechaLimite">Fecha Limite</label>
-                            <input className='border-2 border-gray-600 rounded-md p-1' type="date" name='fechaLimite'/>
-                        </div>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    >
+                            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
 
-                        <div className='w-full flex justify-end'> 
-                            <button className='bg-gray-800 text-white p-1 m-1 rounded-md hover:bg-gray-950'
-                            onClick={() => setTAskform(false)} >Cancelar</button>
-                            <button className='bg-blue-600 text-white p-1 m-1 rounded-md hover:bg-blue-900' type='submit'
-                            onClick={() => setTaskform(false)} >Crear</button>
+
+                            <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+                                <button
+                                    type="button"
+                                    className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    onClick={ handleModalTask }
+                                >
+                                <span className="sr-only">Cerrar</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+
+
+                            <div className="sm:flex sm:items-start">
+                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
+                                        {id ? 'Editar Tarea': 'Crear Tarea'}
+                                    </Dialog.Title>
+
+                                    {msg && <Alert alert={alert} />}
+
+                                    <form 
+                                        onSubmit={handleSubmit}
+                                        className='my-10'
+                                    >
+                                        <div className='mb-5'>
+                                            <label
+                                                className='text-gray-700 uppercase font-bold text-sm' 
+                                                htmlFor='nombre'
+                                            >
+                                                Nombre Tarea
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                placeholder='Nombre de la Tarea'
+                                                className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                                                value={name}
+                                                onChange={e => setName(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className='mb-5'>
+                                            <label
+                                                className='text-gray-700 uppercase font-bold text-sm' 
+                                                htmlFor='descripcion'
+                                            >
+                                                Descripción Tarea
+                                            </label>
+                                            <textarea
+                                                id="descripcion"
+                                                placeholder='Descripción de la Tarea'
+                                                className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                                                value={description}
+                                                onChange={e => setDescription(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className='mb-5'>
+                                            <label
+                                                className='text-gray-700 uppercase font-bold text-sm' 
+                                                htmlFor='fecha-entrega'
+                                            >
+                                               Fecha Entrega
+                                            </label>
+                                            <input
+                                                type="date"
+                                                id="fecha-entrega"
+                                                className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                                                value={deliveryDate}
+                                                onChange={e => setDeliveryDate(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className='mb-5'>
+                                            <label
+                                                className='text-gray-700 uppercase font-bold text-sm' 
+                                                htmlFor='prioridad'
+                                            >
+                                               Prioridad
+                                            </label>
+                                            <select
+                                                id="prioridad"
+                                                className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                                                value={priority}
+                                                onChange={e => setPriority(e.target.value)}
+                                            >
+                                                <option value="">-- Seleccionar --</option>
+
+                                                {PRIORIDAD.map( opcion => (
+                                                    <option key={opcion}>{opcion}</option>
+                                                ))}
+
+                                            </select>
+                                        </div>
+
+                                        <input
+                                            type="submit"
+                                            className='bg-sky-600 hover:bg-sky-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors rounded text-sm'
+                                            value={ id ? 'Guardar Cambios': 'Crear Tarea'}
+                                        />
+
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </Transition.Child>
                 </div>
-            </div>
-        } </>
+            </Dialog>
+        </Transition.Root>
     )
 }
+export default TaskForm

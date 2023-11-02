@@ -17,12 +17,14 @@ import lombok.Setter;
 @Builder
 public class UserResponse implements Serializable {
     private Long id;
+    private String user;
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private String imagePerfil;
     private String phone;
     private LocalDate registrationDate;
     private AccountStatus accountStatus;
-
+    private String msg;
 }

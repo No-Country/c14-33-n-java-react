@@ -39,7 +39,16 @@ public class UserServiceImpl implements UserService {
             .orElseThrow(() -> new NotFoundException("users", "id", id));
         return this.userToUserResponse(userFromDB);
     }
-
+    
+    @Transactional(readOnly = true)
+    @Override
+    public UserResponse findByEmail(String email) {
+    var userFromDB = userRepository.findByEmail(email);
+    if (userFromDB == null) {
+        throw new NotFoundException("users", "email", email);
+    }
+    return this.userToUserResponse(userFromDB);
+    }
     @Transactional
     @Override
     public UserResponse save(UserRequest request) {

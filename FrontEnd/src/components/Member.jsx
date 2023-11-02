@@ -1,16 +1,27 @@
 import React from 'react'
+import useProjects from '../hooks/useProjects'
 
-export default function Member() {
+const Member = ({member}) => {
+    const {handleRemoveMember} = useProjects()
+
+    const {  name, email } = member
+
     return (
-        <>
-
-            <div className='p-3 m-2 bg-gray-500 rounded-lg flex items-center'>
-
-                <div className='h-12 w-12 rounded-full bg-gray-800 mx-5'></div>
-                <h1>Miembro X</h1>
-
+        <div className="border-b p-5 flex justify-between items-center">
+            <div>
+                <p>{name}</p>
+                <p className="text-sm text-gray-700">{email}</p>
             </div>
 
-        </>
+            <div>
+                <button
+                    type="button"
+                    className="bg-red-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg"
+                    onClick={() => handleRemoveMember(member)}
+                >Eliminar</button>
+            </div>
+        </div>
     )
 }
+
+export default Member

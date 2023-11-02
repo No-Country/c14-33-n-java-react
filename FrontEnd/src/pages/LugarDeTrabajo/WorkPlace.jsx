@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Member from "../../components/Member";
 import ProyectForm from '../../components/ProyectForm';
 import TaskForm from "../../components/TaskForm";
-import ProyectsList from '../../components/ProyectsList';
 import TasksList from "../../components/TasksList";
 import Proyect from '../../components/Proyect';
 

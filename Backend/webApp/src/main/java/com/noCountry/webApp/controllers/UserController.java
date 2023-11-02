@@ -1,5 +1,7 @@
 package com.noCountry.webApp.controllers;
 
+import com.noCountry.webApp.entities.User;
+import com.noCountry.webApp.repositories.UserRepository;
 import com.noCountry.webApp.dto.request.UserRequest;
 import com.noCountry.webApp.dto.response.UserResponse;
 import com.noCountry.webApp.services.UserService;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping("/users")
     public ResponseEntity<List<UserResponse>> list() {
@@ -34,9 +37,23 @@ public class UserController {
         return ResponseEntity.ok(userService.findById(id));
     }
 
-    @PostMapping("/users")
+    @PostMapping("/")/* registro */
     public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(request));
+    }
+    @PostMapping("/login")/* login */
+    public ResponseEntity<UserResponse> authenticate(@RequestBody UserRequest request) {
+        String email = request.getEmail();
+        String password = request.getPassword();
+        User user=userRepository.findByEmail(email);
+        UserResponse response = new UserResponse();
+        if (user != null && user.getPassword().equals(password)) {
+            response.setMsg("Autorización realizada con exito!");
+            return ResponseEntity.ok(response);
+        }else{
+            response.setMsg("Autorización Rechazada!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
     }
 
     @PutMapping("/users/{id}")

@@ -10,6 +10,8 @@ public interface UserService {
 
     UserResponse findById(Long id);
 
+    UserResponse findByEmail(String email);
+
     UserResponse save(UserRequest request);
 
     UserResponse update(UserRequest request, Long id);

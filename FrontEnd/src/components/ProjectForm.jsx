@@ -56,7 +56,6 @@ const ProjectForm = () => {
 
       <div className='mb-5'>
         <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="name">Nombre Proyecto</label>
-
         <input type="text"
         className='border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md'
         placeholder='Nombre del Proyecto' 
@@ -66,7 +65,6 @@ const ProjectForm = () => {
       {/* --------------------- */}
       <div className='mb-5'>
         <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="delivery-Date">Descripción</label>
-
         <textarea 
         className='border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md'
         placeholder='Descripción del Proyecto' 
@@ -76,7 +74,6 @@ const ProjectForm = () => {
       {/* --------------------- */}
       <div className='mb-5'>
         <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="">Fecha Entrega</label>
-
         <input 
         type='date'
         className='border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md'
@@ -87,7 +84,6 @@ const ProjectForm = () => {
     {/* --------------------- */}
       <div className='mb-5'>
         <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="client">Nombre Cliente</label>
-
         <input type="text"
         className='border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md'
         placeholder='Nombre del Cliente' 
