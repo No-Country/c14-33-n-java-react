@@ -19,7 +19,7 @@ const NewMember = () => {
 
   return (
     <>
-      <h1 className="text-4xl font-black">Añadir nuevo Miembro al Proyecto: {project.name}</h1>
+      <h1 className="text-4xl font-black">Añadir nuevo Miembro al Proyecto: {project.user}</h1>
 
 
       <div className="mt-10 flex justify-center">
@@ -33,7 +33,7 @@ const NewMember = () => {
                 <h2 className='text-center mb-10 text-2xl font-bold'>Resultado:</h2>
 
                 <div className='flex justify-between items-center'>
-                  <p>{member.name}</p>
+                  <p>{member.user}</p>
 
                   <button
                     type="button"

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Member from "../../components/Member";
 import ProyectForm from '../../components/ProyectForm';
-import TaskForm from "../../components/TaskForm";
-import TasksList from "../../components/TasksList";
+import TaskForm from "../../components/TaskForm";/* 
+import TasksList from "../../components/TasksList"; */
 import Proyect from '../../components/Proyect';
 
 export const WorkPlace = () => {
@@ -73,7 +73,7 @@ export const WorkPlace = () => {
 
                 <div>
 
-                    <TasksList/>
+                    {/* <TasksList/> */}
 
                 </div>
 

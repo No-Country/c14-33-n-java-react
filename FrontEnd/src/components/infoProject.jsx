@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const infoProject = ({project}) => {
-    const{name,_id,client}=project
+    const{user,_id,client}=project
      
   return (
     <div className='border-b p-5 flex'>
-      <p className='flex-1'>{name}
+      <p className='flex-1'>{user}
       <span className='text-sm text-gray-600 uppercase'>{''}{client}</span>
       </p>
       <Link

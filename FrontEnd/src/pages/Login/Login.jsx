@@ -23,7 +23,7 @@ const Login = () => {
       return
     }
     try {
-      const {data} = await axiosClient.post('/',{email,password})
+      const {data} = await axiosClient.post('/users/login',{email,password})
       setAlert({
         msg:data.msg,
         error:false
@@ -32,7 +32,7 @@ const Login = () => {
       setAuth(data)
       navigate('/projects')
     } catch (error) {
-      console.log('que miras capo?')
+      console.log('que miras mastodonte?')
       setAlert({
         msg:error.response.data.msg,
         error:true        

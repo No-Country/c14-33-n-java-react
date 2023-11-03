@@ -5,7 +5,7 @@ import Alert from './Alert'
 
 const ProjectForm = () => {
     const[id,setId]=useState(null)
-    const[name,setName]=useState('')
+    const[user,setUser]=useState('')
     const[description,setDescription]=useState('')
     const[deliveryDate ,setDeliveryDate]=useState('')
     const[client,setClient]=useState('')
@@ -16,7 +16,7 @@ const ProjectForm = () => {
     useEffect(()=>{
       if (params.id) {
         setId(project._id)
-        setName(project.name)
+        setUser(project.user)
         setDescription(project.description)
         /* el signo ? asegura que si project.deliveryDate no está definido, 
         la expresión se detenga de manera segura sin lanzar un error  */
@@ -28,7 +28,7 @@ const ProjectForm = () => {
     const handleSubmit= async e=>{
         e.preventDefault()
 
-        if([name,description,deliveryDate,client].includes('')){
+        if([user,description,deliveryDate,client].includes('')){
             showAlert({
                 msg:'Todos los campos son obligatorios',
                 error:true
@@ -36,10 +36,10 @@ const ProjectForm = () => {
             return
         }
 
-        await submitProject({id,name,description,deliveryDate,client})
+        await submitProject({id,user,description,deliveryDate,client})
 
         setId(null)
-        setName('')
+        setUser('')
         setDescription('')
         setDeliveryDate('')
         setClient('')
@@ -55,12 +55,12 @@ const ProjectForm = () => {
     {msg && <Alert alert={alert}/>}
 
       <div className='mb-5'>
-        <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="name">Nombre Proyecto</label>
+        <label className='text-gray-600 uppercase font-bold text-sm' htmlFor="user">Nombre Proyecto</label>
         <input type="text"
         className='border-2 w-full p-2 mt-2 placeholder-gray-500 rounded-md'
         placeholder='Nombre del Proyecto' 
-        value={name}
-        onChange={e=>setName(e.target.value)}/>
+        value={user}
+        onChange={e=>setUser(e.target.value)}/>
       </div>
       {/* --------------------- */}
       <div className='mb-5'>

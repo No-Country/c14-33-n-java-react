@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
-import Footer from './../components/Footer';
 import NavBar from './../components/NavBar';
 
 

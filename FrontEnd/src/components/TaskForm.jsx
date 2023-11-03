@@ -9,7 +9,7 @@ const PRIORITY = ['Baja', 'Media', 'Alta']
 const TaskForm = () => {
 
     const [id, setId] = useState('')
-    const [name, setName] = useState('')
+    const [user, setUser] = useState('')
     const [description, setDescription] = useState('')
     const [deliveryDate, setDeliveryDate] = useState('')
     const [priority, setPriority] = useState('')
@@ -21,14 +21,14 @@ const TaskForm = () => {
     useEffect(() => {
         if(task?._id) {
             setId(task._id)
-            setName(task.name)
+            setUser(task.user)
             setDescription(task.description)
             setDeliveryDate(task.deliveryDate?.split('T')[0])
             setPriority(task.priority)
             return
         } 
         setId('')
-        setName('')
+        setUser('')
         setDescription('')
         setDeliveryDate('')
         setPriority('')
@@ -39,7 +39,7 @@ const TaskForm = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        if([name, description, deliveryDate, priority].includes('') ) {
+        if([user, description, deliveryDate, priority].includes('') ) {
             showAlert({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -47,10 +47,10 @@ const TaskForm = () => {
             return
         }
 
-        await submitTask({id,name,description,deliveryDate,priority,proyecto:params.id})
+        await submitTask({id,user,description,deliveryDate,priority,proyecto:params.id})
 
         setId('')
-        setName('')
+        setUser('')
         setDescription('')
         setDeliveryDate('')
         setPriority('')
@@ -130,8 +130,8 @@ const TaskForm = () => {
                                                 id="nombre"
                                                 placeholder='Nombre de la Tarea'
                                                 className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
-                                                value={name}
-                                                onChange={e => setName(e.target.value)}
+                                                value={user}
+                                                onChange={e => setUser(e.target.value)}
                                             />
                                         </div>
 

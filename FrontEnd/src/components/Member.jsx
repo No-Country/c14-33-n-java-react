@@ -4,12 +4,12 @@ import useProjects from '../hooks/useProjects'
 const Member = ({member}) => {
     const {handleRemoveMember} = useProjects()
 
-    const {  name, email } = member
+    const {  user, email } = member
 
     return (
         <div className="border-b p-5 flex justify-between items-center">
             <div>
-                <p>{name}</p>
+                <p>{user}</p>
                 <p className="text-sm text-gray-700">{email}</p>
             </div>
 

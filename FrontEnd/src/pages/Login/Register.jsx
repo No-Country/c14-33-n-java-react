@@ -5,7 +5,7 @@ import axiosClient from "../../config/axiosClient"
 
 
 const Register = () => {
-    const[name,setName]=useState('')
+    const[user,setUser]=useState('')
     /* const[firstName,setFirstName]=useState('')
     const[lastName,setLastName]=useState('') */
     const[email,setEmail]=useState('')
@@ -18,7 +18,7 @@ const Register = () => {
     const handleSubmit = async e =>{
       e.preventDefault();
       /* hacemos que todos los campos sean obligatorios */
-      if([name,email,password,repeatPassword].includes('')){      
+      if([user,email,password,repeatPassword].includes('')){      
         setAlert({
           msg:'¡Todos los campos son obligatorios!',
           error : true
@@ -41,14 +41,14 @@ const Register = () => {
       }
       setAlert({})
       try {
-        const {data} = await axiosClient.post('/users',{name,email,password})
+        const {data} = await axiosClient.post('/users',{user,email,password})
         setAlert({
           /* llamamos al mensaje del back e igualamos error a false */
           msg: data.msg,
           error:false
         })
         /* reseteamos los valores de los campos */        
-        setName('')
+        setUser('')
         /* setFirstName('')
         setLastName('') */
         setEmail('')
@@ -57,7 +57,7 @@ const Register = () => {
       } catch (error) {
         setAlert({
           /* llamamos al mensaje del back e igualamos error a true */
-          msg: error.repsonse.data.msg,
+          msg: error.response.data.msg,
           error:true
         })
       }
@@ -88,8 +88,8 @@ const Register = () => {
             type="text"
             placeholder="Ingrese su nombre"
             className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
-            value={name}
-            onChange={e=>setName(e.target.value)}
+            value={user}
+            onChange={e=>setUser(e.target.value)}
           />
         </div>
         {/* <div className="my-5 mb-10">

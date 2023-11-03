@@ -7,6 +7,7 @@ import useAdmin from './../hooks/useAdmin';
 import RemoveTask from "./RemoveTask"
 import RemoveMember from "./RemoveMember"
 import TaskForm from "./TaskForm"
+import Task from "./Task"
 
 
 const Project = () => {
@@ -50,13 +51,13 @@ useEffect(() => {
   })
 })
 
-const {name } = project
+const {user } = project
 if(loading) return 'loading...'
 const { msg } = alert
 
-/* const{name}=project */
+
   return (<><div className="flex justify-between">
-    <h1>{project}</h1>
+    <h1>{user}</h1>
 
     {admin && (<div className="flex items-center gap-1 text-gray-400 hover:text-cyan-800">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -106,7 +107,7 @@ const { msg } = alert
         {project.members?.length ? 
           project.members?.map( member => (
               <Member 
-                  key={members._id}
+                  key={member._id}
                   member={member}
               />
           )) : 
