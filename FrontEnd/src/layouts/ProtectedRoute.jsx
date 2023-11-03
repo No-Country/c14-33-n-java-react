@@ -16,7 +16,7 @@ const ProtectedRoute = () => {
         <NavBar/>
         <div className="md:flex md:min-h-screen">
             <Sidebar/>
-            <main className="flex-1 p-10 bg-slate-200 ">
+            <main className="flex-1 p-10 bg-slate-400 bg-opacity-50">
                 <Outlet/>
             </main>
         </div>

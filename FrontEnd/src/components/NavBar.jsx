@@ -12,13 +12,13 @@ const NavBar = () => {
       localStorage.removeItem('token')
   }
   return (
-    <header className="px-4 py-5 bg-white border-b">
+    <header className="px-4 py-5 bg-teal-700 border-b">
         <div className="md:flex md:justify-between">
-            <h2 className="text-4xl text-black font-black text-center">
+            <h2 className="text-4xl text-white font-black text-center">
                 ARODEQ
             </h2>
 
-            <div className='flex flex-col md:flex-row items-center gap-4'>
+            <div className='flex flex-col md:flex-row items-center gap-4 text-gray-300'>
                 <button
                     type="button"
                     className='font-bold uppercase'

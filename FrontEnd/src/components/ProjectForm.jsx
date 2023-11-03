@@ -14,7 +14,7 @@ const ProjectForm = () => {
     const{showAlert, alert, submitProject,project}=useProjects()
     /* ----------------------------- */
     useEffect(()=>{
-      if (params.id) {
+      if (params._id) {
         setId(project._id)
         setUser(project.user)
         setDescription(project.description)
@@ -38,7 +38,7 @@ const ProjectForm = () => {
 
         await submitProject({id,user,description,deliveryDate,client})
 
-        setId(null)
+        setId("null")
         setUser('')
         setDescription('')
         setDeliveryDate('')

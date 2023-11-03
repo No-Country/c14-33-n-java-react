@@ -9,7 +9,7 @@ import RemoveMember from "./RemoveMember"
 import TaskForm from "./TaskForm"
 import Task from "./Task"
 
-
+let socket
 const Project = () => {
 
   const admin=useAdmin()
@@ -26,7 +26,7 @@ useEffect(()=>{
 },[])
 
 useEffect(() => {
-  socket.on("tarea agregada", newTask => {
+  socket.on('tarea agregada'  , newTask => {
     if(newTask.project === project._id) {
         submitTasksProject(newTask)
     }

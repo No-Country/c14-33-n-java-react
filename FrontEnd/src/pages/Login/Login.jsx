@@ -32,7 +32,6 @@ const Login = () => {
       setAuth(data)
       navigate('/projects')
     } catch (error) {
-      console.log('que miras mastodonte?')
       setAlert({
         msg:error.response.data.msg,
         error:true        
@@ -45,12 +44,12 @@ const Login = () => {
   return (
     
     <>
-      <h1 className="text-sky-950 font-black rounded-t-xl text-4xl capitalize bg-emerald-600 bg-opacity-50 p-5">Para acceder a tu lugar de trabajo {''}
-      <span className="text-gray-100">Inicia sesión</span></h1>
+      <h1 className="text-center text-sky-950 font-black rounded-t-md text-4xl capitalize bg-teal-600 bg-opacity-70 p-7">Para acceder a tu lugar de trabajo {''}
+      <span className="text-gray-100 opacity-70">Inicia sesión</span></h1>
 
       {msg&&<Alert alert={alert}/>}
 
-      <form className="my-10 mt-0 bg-white shadow rounded-b-xl  p-10 font-mono font-black"
+      <form className="my-10 mt-0 bg-white shadow rounded-b-md  p-10 font-mono font-black"
       onSubmit={handleSubmit}
       >
         <div className="my-5">
