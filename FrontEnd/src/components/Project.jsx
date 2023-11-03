@@ -15,7 +15,7 @@ const Project = () => {
   const admin=useAdmin()
   const params=useParams()
 /* traemos el hook y extraemos getProject,project,loading*/
-const{getProject,project,loading,handleModalTask,alert,submitTasksProject,deleteTaskProject,updateTaskProject,changeStateTask}=useProjects()
+const{getProject,project,loading,handleTaskModal,alert,submitTasksProject,deleteTaskProject,updateTaskProject,changeStateTask}=useProjects()
 /* hook envia el id al provider*/
 useEffect(()=>{
   getProject(params.id)
@@ -70,7 +70,7 @@ const { msg } = alert
 
     </div>
     {admin && (<button
-    onClick={handleModalTask}
+    onClick={handleTaskModal}
     type="button"
     className="text-sm mt-5 px-5 py-3w w-full md:w-auto rounded-sm uppercase flex gap-2
     font-bold bg-teal-700 text-white text-center items-center justify-center">
@@ -111,7 +111,7 @@ const { msg } = alert
                   member={member}
               />
           )) : 
-        <p className='text-center my-5 p-10'>No hay Colaboradores en este proyecto</p>}
+        <p className='text-center my-5 p-10'>No hay Miembros en este proyecto</p>}
     </div>
   </>
 )}

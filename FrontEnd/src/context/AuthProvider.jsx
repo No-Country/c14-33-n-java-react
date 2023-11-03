@@ -28,24 +28,29 @@ const AuthProvider=({children})=>{
             }
 
             try {
-            const {data}=await axiosClient('/user/profile',config)
+            const {data}=await axiosClient('/users/profile',config)
             setAuth({data})
-            navigate('/projects')
+            /* navigate('/projects') */
             } catch (error) {
                 setAuth({})
             }finally{
                 setLoading(false)
-            }
-            
+            }            
         }
+        authUser()
     },[])
+
+    const closeSesionAuth = () => {
+        setAuth({})
+    }
 
     return(
         <AuthContext.Provider
         value={{
             auth,
             setAuth,
-            loading
+            loading,
+            closeSesionAuth
         }}
         >
             {children}

@@ -16,7 +16,7 @@ const TaskForm = () => {
 
     const params = useParams()
 
-    const { modalFormTask, handleModalTask, showAlert, alert, submitTask, task } = useProjects();
+    const { formTaskModal, handleTaskModal, showAlert, alert, submitTask, task } = useProjects();
 
     useEffect(() => {
         if(task?._id) {
@@ -47,7 +47,7 @@ const TaskForm = () => {
             return
         }
 
-        await submitTask({id,user,description,deliveryDate,priority,proyecto:params.id})
+        await submitTask({id,user,description,deliveryDate,priority,project:params.id})
 
         setId('')
         setUser('')
@@ -59,8 +59,8 @@ const TaskForm = () => {
     const {msg} = alert
  
     return (
-        <Transition.Root show={ modalFormTask } as={Fragment}>
-            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={ handleModalTask }>
+        <Transition.Root show={ formTaskModal } as={Fragment}>
+            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={ handleTaskModal }>
                 <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <Transition.Child
                         as={Fragment}
@@ -96,7 +96,7 @@ const TaskForm = () => {
                                 <button
                                     type="button"
                                     className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    onClick={ handleModalTask }
+                                    onClick={ handleTaskModal }
                                 >
                                 <span className="sr-only">Cerrar</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -182,8 +182,8 @@ const TaskForm = () => {
                                             >
                                                 <option value="">-- Seleccionar --</option>
 
-                                                {PRIORITY.map( opcion => (
-                                                    <option key={opcion}>{opcion}</option>
+                                                {PRIORITY.map( option => (
+                                                    <option key={option}>{option}</option>
                                                 ))}
 
                                             </select>

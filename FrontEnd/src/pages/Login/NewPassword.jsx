@@ -19,7 +19,7 @@ const NewPassword = async () => {
   useEffect(()=>{
     const checkToken=async()=>{
       try {
-        const {data}= await axiosClient(`/user/forgot-password/${token}`)/* direccion del la seccion back */
+        const {data}= await axiosClient(`/users/forgot-password/${token}`)/* direccion del la seccion back */
         console.log(data)/* checkear */
         setValidToken(true)
       } catch (error) {
@@ -46,7 +46,7 @@ const NewPassword = async () => {
   }
 
   try {
-    const url=`/user/forgot-password/${token}`
+    const url=`/users/forgot-password/${token}`
     const{data}=await axiosClient.post(url,{password})
     setAlert({
       msg:data.msg,
