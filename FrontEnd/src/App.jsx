@@ -7,27 +7,37 @@ import NewPassword from './pages/Login/NewPassword';
 import ConfirmAccount from './pages/Login/ConfirmAccount';
 import { AuthProvider } from './context/AuthProvider';
 import ProtectedRoute from './layouts/ProtectedRoute';
-import WorkPlace from './pages/LugarDeTrabajo/WorkPlace';
-
+import NewProject from './pages/LugarDeTrabajo/NewProject';
+import { ProjectsProvider } from './context/ProjectsProvider';
+import Projects from './components/Projects';
+import Project from './components/Project';
+import EditProject from './pages/LugarDeTrabajo/EditProject';
+import NewMember from './pages/Perfil/NewMember';
 
 function App() {
 
   return (    
     <BrowserRouter>
     <AuthProvider>
+      <ProjectsProvider>
       <Routes>
         <Route path ='/' element={<AuthLayout/>}>
           <Route index element={<Login/>}/>
           <Route path='register' element={<Register/>}/>
           <Route path='forgot-password' element={<ForgotPassword/>}/>
           <Route path='forgot-password/:token' element={<NewPassword/>}/>
-          <Route path='confirmar/:id' element={<ConfirmAccount/>}/>
+          <Route path='confirm/:token' element={<ConfirmAccount/>}/>
         </Route>
         <Route path='/projects' element={<ProtectedRoute/>}>
-          <Route index element={<WorkPlace/>}/>
+          <Route index element={<Projects/>}/>
+          <Route path='create-project' element={<NewProject/>}/>
+          <Route path="new-member/:id" element={<NewMember/>} />
+          <Route path=':id' element={<Project/>}/>
+          <Route path='edit/:id' element={<EditProject/>}/>
         </Route>
-
+      
       </Routes>
+      </ProjectsProvider>
       </AuthProvider>
     </BrowserRouter>
     

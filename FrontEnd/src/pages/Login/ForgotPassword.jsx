@@ -18,7 +18,7 @@ const ForgotPassword = () => {
       return
     }
     try {
-      const {data} = await axiosClient.post('/user/forgot-password',{email})
+      const {data} = await axiosClient.post('/users/forgot-password',{email})
       setAlert({
         msg:data.msg,
         error:false
@@ -35,8 +35,8 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <h1 className="text-black font-black rounded-t-xl text-4xl capitalize bg-slate-500 p-5">Escribe tu email para recuperar {''}
-      <span className="text-gray-100">Tu cuenta</span></h1>
+      <h1 className="text-gray-100 font-bold text-center rounded-t-md text-4xl capitalize bg-cyan-700 p-5">Escribe tu email para recuperar
+      tu cuenta</h1>
 
       {msg&&<Alert alert={alert}/>}
       
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
           <input 
           type="email"
           placeholder="Ingrese su Correo"
-          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
+          className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
           focus:invalid:border-red-500"

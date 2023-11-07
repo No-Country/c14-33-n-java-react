@@ -6,43 +6,43 @@ import axiosClient from "../../config/axiosClient"
 
 const ConfirmAccount = () => {
   const [alert, setAlert]=useState({})
-  const[confirmedAccount, setConfirmedAccount]=useState(false)
+  const[confirm, setConfirm]=useState(false)
 
   const params= useParams()
-  const {id} = params
+  const {token} = params
     
   useEffect(()=>{
     const confirmAccount = async () =>{
       try {
-        const url = `/user/confirm/${id}`
-        const {data}=await axiosClient(url)
+      
+        const {data}=await axiosClient(`users/confirm/${token}`)
 
         setAlert({
           msg: data.msg,
           error:false
         })
-        setConfirmedAccount(true)
+        setConfirm(true)
       } catch (error) {
         setAlert({
           msg: error.response.data.msg,
-          error: true
+          error:true
         })
       }
     }
+    confirmAccount()
   },[])
 
   const{msg}=alert
 
   return (
     <>
-      <h1 className="text-sky-950 font-black rounded-xl text-5xl capitalize bg-emerald-600 bg-opacity-50 p-20">Confirma tu cuenta y empieza a {''}
-      <span className="text-gray-100">Organizar tus proyectos</span></h1>
-      <div className="mt-10 md:mt-5 px-5 py-10 rounded-xl bg-white">
-        {msg && <Alert alerta={alerta}/>}
-        {confirmedAccount && (
+      <h1 className="text-sky-950 font-bold rounded-md text-6xl text-center capitalize bg-teal-500 bg-opacity-30 p-20">Confirmación de cuenta</h1>
+      <div className="mt-10 md:mt-5 px-5 py-10 bg-transparent">
+        {msg && <Alert alert={alert}/>}
+        {confirm && (
           <Link
-          className="font-black block text-center my-5 text-zinc-700 hover:text-white "
-          to='/'>Inicia Sesión
+          className="font-black block text-center my-5 opacity-30 text-zinc-700 hover:text-white "
+          to='/users/login'>Inicia Sesión
           </Link>
         )}
       </div>

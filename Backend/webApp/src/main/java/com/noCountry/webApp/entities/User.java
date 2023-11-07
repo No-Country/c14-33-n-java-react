@@ -36,8 +36,13 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String userName;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    private String token;       
+    @Column(columnDefinition = "boolean default false")
+    private boolean confirmed; 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
