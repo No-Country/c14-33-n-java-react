@@ -31,11 +31,11 @@ function App() {
         <Route path='/projects' element={<ProtectedRoute/>}>
           <Route index element={<Projects/>}/>
           <Route path='create-project' element={<NewProject/>}/>
-          <Route path="new-mamber/:id" element={<NewMember/>} />
+          <Route path="new-member/:id" element={<NewMember/>} />
           <Route path=':id' element={<Project/>}/>
           <Route path='edit/:id' element={<EditProject/>}/>
         </Route>
-
+      
       </Routes>
       </ProjectsProvider>
       </AuthProvider>

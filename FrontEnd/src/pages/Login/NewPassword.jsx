@@ -62,7 +62,7 @@ const NewPassword = async () => {
 
   return (
     <>
-      <h1 className="text-sky-950 font-black rounded-t-xl text-4xl capitalize bg-slate-500 p-5">Restablece tu contraseña para acceder a {''}
+      <h1 className="text-sky-950 font-black rounded-t-md text-4xl capitalize bg-slate-500 p-5">Restablece tu contraseña para acceder a {''}
       <span className="text-gray-100">Tu cuenta</span></h1>
 
       {msg&&<Alert alert={alert}/>}      
@@ -77,7 +77,7 @@ const NewPassword = async () => {
             <input
               type="password"
               placeholder="Ingrese su contraseña"
-              className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer"
+              className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer"
               value={password}
               onChange={e=>setPasword(e.target.value)}
             />

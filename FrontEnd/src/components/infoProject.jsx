@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 
 
-const infoProject = ({project}) => {
+const InfoProject = ({project}) => {
+
+    const {auth} = useAuth()
+
     const{user,_id,client, creator}=project
 
-    const { auth } = useAuth()
-     
+
   return (
     <div className='border-b p-5 flex flex-col md:flex-row justify-between'>
       <div className='flex items-center gap-2'>
@@ -18,7 +20,7 @@ const infoProject = ({project}) => {
                     </span>
                 </p>                
                 {auth._id !== creator && (
-                    <p className='p-1 text-xs rounded-lg text-white bg-green-500 font-bold uppercase'>Colaborador</p>
+                    <p className='p-2 text-xs rounded-lg text-white bg-green-500 font-bold uppercase'>Miembro</p>
                 )}
             </div>
             <Link
@@ -29,4 +31,4 @@ const infoProject = ({project}) => {
   )
 }
 
-export default infoProject
+export default InfoProject

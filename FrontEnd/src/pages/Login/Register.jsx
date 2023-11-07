@@ -6,12 +6,9 @@ import axiosClient from "../../config/axiosClient"
 
 const Register = () => {
     const[user,setUser]=useState('')
-    /* const[firstName,setFirstName]=useState('')
-    const[lastName,setLastName]=useState('') */
     const[email,setEmail]=useState('')
     const[password,setPasword]=useState('')
     const[repeatPassword,setRepeatPassword]=useState('')
-    /* creamos la constante para la alerta */
     const[alert,setAlert]=useState({})
     
     /* funcion para el envio del formulario */
@@ -69,8 +66,8 @@ const Register = () => {
   return (
     <>
       <div>
-      <h1 className="text-sky-950q font-black rounded-t-xl text-4xl capitalize bg-cyan-600 bg-opacity-50 p-5">Crea tu cuenta y {''}
-        <span className="text-emerald-100">empieza a crear proyectos</span></h1>
+      <h1 className="text-center text-sky-950q font-bold rounded-t-md text-4xl capitalize bg-cyan-700  bg-opacity-50 p-5">Crea tu cuenta y 
+        empieza a crear proyectos</h1>
 
       {/* ejecutamos la alerta */}
       {msg && <Alert alert={alert}/>}
@@ -87,7 +84,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Ingrese su nombre"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200"
             value={user}
             onChange={e=>setUser(e.target.value)}
           />
@@ -99,7 +96,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Ingrese su nombre"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200"
             value={firstName}
             onChange={e=>setFirstName(e.target.value)}
           />
@@ -111,7 +108,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Ingrese su apellido"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200"
             value={lastName}
             onChange={e=>setLastName(e.target.value)}
           />
@@ -124,7 +121,7 @@ const Register = () => {
           <input
             type="email"
             placeholder="Ingrese su Correo"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
           focus:invalid:border-red-500"
@@ -142,7 +139,7 @@ const Register = () => {
           <input
             type="password"
             placeholder="Ingrese su contraseña"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer"
             value={password}
             onChange={e=>setPasword(e.target.value)}
           />
@@ -154,7 +151,7 @@ const Register = () => {
           <input
             type="password"
             placeholder="Ingrese nuevamente su contraseña"
-            className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer"
+            className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer"
             value={repeatPassword}
             onChange={e=>setRepeatPassword(e.target.value)}
           />
@@ -163,7 +160,7 @@ const Register = () => {
         <input
           type="submit"
           value={'Crear Cuenta'}
-          className="font-bold uppercase mb-5 bg-white border shadow w-full py-3 text-gray-600 hover:bg-green-300 cursor-pointer transition-colors"
+          className="font-bold uppercase mb-5 bg-white border shadow w-full py-3 text-gray-600 hover:bg-gray-400 cursor-pointer transition-colors"
         />        
       </form>      
       <nav className="lg:flex lg:justify-center pb-5">

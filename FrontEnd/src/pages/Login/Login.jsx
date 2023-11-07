@@ -44,7 +44,7 @@ const Login = () => {
   return (
     
     <>
-      <h1 className="text-center text-sky-950 font-black rounded-t-md text-4xl capitalize bg-teal-600 bg-opacity-70 p-7">Para acceder a tu lugar de trabajo {''}
+      <h1 className="text-center text-sky-950 font-bold rounded-t-md text-4xl capitalize bg-cyan-800 bg-opacity-80 p-7">Bienvenid@ a ALOWES {''}
       <span className="text-gray-100 opacity-70">Inicia sesión</span></h1>
 
       {msg&&<Alert alert={alert}/>}
@@ -59,7 +59,7 @@ const Login = () => {
           <input 
           type="email"
           placeholder="Ingrese su Correo"
-          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200 peer 
+          className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200 peer 
           disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
           invalid:border-red-500 invalid:text-red-500
           focus:invalid:border-red-500"        
@@ -78,7 +78,7 @@ const Login = () => {
           <input
           type="password"
           placeholder="Ingrese su contraseña"
-          className="w-full mt-2 p-3 border border-gray-400 rounded-xl bg-slate-200"   
+          className="w-full mt-2 p-3 border border-gray-400 rounded-md bg-slate-200"   
           value={password}
           onChange={e=>setPassword(e.target.value)}       
           />
@@ -87,7 +87,7 @@ const Login = () => {
         <input 
         type="submit"
         value={'Iniciar Sesión'}
-        className="font-bold uppercase mb-5 bg-white border shadow w-full py-3 text-gray-600 hover:bg-emerald-400 cursor-pointer transition-colors"
+        className="font-bold uppercase mb-5 bg-white border shadow w-full py-3 text-gray-600 hover:bg-gray-400 cursor-pointer transition-colors"
         />
       </form>
       <nav className="lg:flex lg:justify-between">

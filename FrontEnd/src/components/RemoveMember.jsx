@@ -3,11 +3,11 @@ import {Dialog,Transition} from '@headlessui/react'
 import useProjects from './../hooks/useProjects';
 
 const RemoveMember = () => {
-    const {handleRemoveMemberModal,RemoveMemberModal,RemoveMember}=useProjects()
+    const {handleDeleteMemberModal,deleteMemberModal,deleteMember}=useProjects()
  
     return (
-        <Transition.Root show={RemoveMemberModal} as={Fragment}>
-            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={ handleRemoveMemberModal }>
+        <Transition.Root show={deleteMemberModal} as={Fragment}>
+            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={ handleDeleteMemberModal }>
                 <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <Transition.Child
                         as={Fragment}
@@ -43,7 +43,7 @@ const RemoveMember = () => {
                                 <button
                                     type="button"
                                     className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    onClick={handleRemoveMemberModal}
+                                    onClick={handleDeleteMemberModal}
                                 >
                                 <span className="sr-only">Cerrar</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -61,7 +61,7 @@ const RemoveMember = () => {
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                     <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
-                                        Eliminar Colaborador
+                                        Eliminar Miembro
                                     </Dialog.Title>
                                     <div className='mt-2'>
                                         <p className='text-sm text-gray-500'>
@@ -76,14 +76,14 @@ const RemoveMember = () => {
                                 <button
                                     type="button"
                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={RemoveMember}
+                                    onClick={deleteMember}
                                 >
                                     Eliminar
                                 </button>
                                 <button
                                     type="button"
                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                                    onClick={handleRemoveMemberModal}
+                                    onClick={handleDeleteMemberModal}
                                 > Cancelar</button>
                             </div>
                         </div>

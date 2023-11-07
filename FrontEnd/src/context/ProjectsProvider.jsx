@@ -63,7 +63,8 @@ const ProjectsProvider = ({ children }) => {
             await newProject(project)
         }
     }
-    const editProject = async (project) => {
+
+    const editProject = async project => {
         try {
             const token = localStorage.getItem('token')
             if (!token) return
@@ -77,7 +78,7 @@ const ProjectsProvider = ({ children }) => {
             const { data } = await axiosClient.put(`/projects/${project.id}`, project, config)
             console.log(data)/* borrar */
 
-            const updatedProjects = projects.map(projectState => projectState._id = data._id ? data : projectState)
+            const updatedProjects = projects.map(projectState => projectState._id === data._id ? data : projectState)
             setProjects(updatedProjects)
 
             setAlert({
@@ -87,15 +88,16 @@ const ProjectsProvider = ({ children }) => {
 
             setTimeout(() => {
                 setAlert({})
-                navigate('/projets')
+                navigate('/projects')
             }, 3000)
 
         } catch (error) {
             console.log(error)/* borrar */
         }
-
+        
     }
-    const newProject = async (project) => {
+
+    const newProject = async project => {
         try {
             const token = localStorage.getItem('token')
             if (!token) return
@@ -109,7 +111,7 @@ const ProjectsProvider = ({ children }) => {
 
             const { data } = await axiosClient.post('/projects', project, config)
 
-            setProjects([...project, data]
+            setProjects([...projects, data]
             )
             setAlert({
                 msg: 'El proyecto se creo con exito!!',
@@ -118,11 +120,12 @@ const ProjectsProvider = ({ children }) => {
 
             setTimeout(() => {
                 setAlert({})
-                navigate('/projets')
+                navigate('/projects')
             }, 3000)
         } catch (error) {
-
+            console.log(error)
         }
+        
     }
 
     /* obtenemos el proyecto */
@@ -141,8 +144,11 @@ const ProjectsProvider = ({ children }) => {
 
             const { data } = await axiosClient(`/projects/${id}`, config)
             setProject(data)
+            setAlert({})
         } catch (error) {
-            console.log(error)
+            navigate('/projects')
+            setAlert({msg:error.response.data.msg})
+            error:true
         } finally {
             setLoading(false)
         }
@@ -170,14 +176,14 @@ const ProjectsProvider = ({ children }) => {
 
             setTimeout(() => {
                 setAlert({})
-                navigate('/projets')
+                navigate('/projects')
             }, 3000)
         } catch (error) {
 
         }
     }
 
-    const handelTaskModal = () => {
+    const handleTaskModal = () => {
         setFormTaskModal(!formTaskModal)
         setTask({})
     }
@@ -203,7 +209,7 @@ const ProjectsProvider = ({ children }) => {
                 }
             }
 
-            const { data } = await clienteAxios.post('/tasks', task, config)
+            const { data } = await axiosClient.post('/tasks', task, config)
 
             setAlert({})
             setFormTaskModal(false)
@@ -227,7 +233,7 @@ const ProjectsProvider = ({ children }) => {
                 }
             }
 
-            const { data } = await clienteAxios.put(`/tasks/${task.id}`, task, config)
+            const { data } = await axiosClient.put(`/tasks/${task.id}`, task, config)
 
             setAlert({})
             setFormTaskModal(false)
@@ -250,7 +256,6 @@ const ProjectsProvider = ({ children }) => {
     }
 
     const deleteTask = async () => {
-
         try {
             const token = localStorage.getItem('token')
             if (!token) return
@@ -262,7 +267,7 @@ const ProjectsProvider = ({ children }) => {
                 }
             }
 
-            const { data } = await clienteAxios.delete(`/tasks/${task._id}`, config)
+            const { data } = await axiosClient.delete(`/tasks/${task._id}`, config)
             setAlert({
                 msg: data.msg,
                 error: false
@@ -284,7 +289,6 @@ const ProjectsProvider = ({ children }) => {
     }
 
     const submitMember = async email => {
-
         setLoading(true)
         try {
             const token = localStorage.getItem('token')
@@ -297,7 +301,7 @@ const ProjectsProvider = ({ children }) => {
                 }
             }
 
-            const { data } = await clienteAxios.post('/projects/members', { email }, config)
+            const { data } = await axiosClient.post('/projects/members', { email }, config)
 
             setMember(data)
             setAlert({})
@@ -312,7 +316,6 @@ const ProjectsProvider = ({ children }) => {
     }
 
     const addMember = async email => {
-
         try {
             const token = localStorage.getItem('token')
             if (!token) return
@@ -323,7 +326,7 @@ const ProjectsProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const { data } = await clienteAxios.post(`/projects/members/${project._id}`, email, config)
+            const { data } = await axiosClient.post(`/projects/members/${project._id}`, email, config)
 
             setAlert({
                 msg: data.msg,
@@ -359,7 +362,7 @@ const ProjectsProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const { data } = await clienteAxios.post(`/projects/delete-member/${project._id}`, { id: member._id }, config)
+            const { data } = await axiosClient.post(`/projects/delete-member/${project._id}`, { id: member._id }, config)
 
             const updatedProject = { ...project }
 
@@ -393,7 +396,7 @@ const ProjectsProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const { data } = await clienteAxios.post(`/tasks/state/${id}`, {}, config)
+            const { data } = await axiosClient.post(`/tasks/state/${id}`, {}, config)
             setTask({})
             setAlert({})
 
@@ -435,7 +438,7 @@ const ProjectsProvider = ({ children }) => {
         setProject(updatedProject)
     }
 
-    const closeSessionProjects = () => {
+    const closeSesionProjects = () => {
         setProject([])
         setProject({})
         setAlert({})
@@ -453,7 +456,8 @@ const ProjectsProvider = ({ children }) => {
                 project,
                 loading,
                 deleteProject,
-                handelTaskModal,
+                formTaskModal,
+                handleTaskModal,
                 submitTask,
                 handleEditTaskModal,
                 task,
@@ -473,7 +477,7 @@ const ProjectsProvider = ({ children }) => {
                 deleteTaskProject,
                 updateTaskProject,
                 changeStateTask,
-                closeSessionProjects
+                closeSesionProjects
             }}>
             {children}
         </ProjectsContext.Provider>

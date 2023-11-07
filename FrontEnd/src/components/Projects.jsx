@@ -1,7 +1,7 @@
 import React from 'react'
 import useProjects from '../hooks/useProjects'
-import infoProject from './infoProject'
 import Alert from './Alert'
+import InfoProject from './infoProject'
 
 const Projects = () => {
 
@@ -16,7 +16,7 @@ const Projects = () => {
 
             <div className="bg-gray-200 shadow mt-10 rounded-md ">
                 {projects.length ? projects.map(project=>(
-                  <infoProject
+                  <InfoProject
                   key={project._id}
                   project={project}
                   />))

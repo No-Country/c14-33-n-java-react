@@ -22,22 +22,22 @@ const Task = ({task}) => {
             </div>
 
             <div className="flex flex-col lg:flex-row gap-2">
-                {admin && (
-                    <button
-                        className="bg-indigo-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg"
-                        onClick={() => handleEditTaskModal(task)}
-                    >Editar</button>
-
-                )}
-
-                <button
-                    className={`${state ? 'bg-emerald-600' : 'bg-gray-600'} px-4 py-3 text-white uppercase font-bold text-sm rounded-lg`}
+            <button
+                    className={`${state ? 'bg-green-600' : 'bg-gray-600'} px-4 py-3 text-white uppercase font-bold text-sm rounded-lg`}
                     onClick={() => completeTask(_id)}
                 >{state ? 'Completa' : 'Incompleta'}</button>
                 
+                {admin && (
+                    <button
+                        className=" hover:text-cyan-400 px-4 py-3 text-gray-600 uppercase font-bold text-sm rounded-lg"
+                        onClick={() => handleEditTaskModal(task)}
+                    >Editar</button>
+
+                )}              
+                
                 {admin && ( 
                     <button
-                        className="bg-red-500 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg"
+                        className=" hover:text-red-500 px-4 py-3 text-gray-600 uppercase font-bold text-sm rounded-lg"
                         onClick={() => handleDeleteTaskModal(task)}
                     >Eliminar</button>
                 )}

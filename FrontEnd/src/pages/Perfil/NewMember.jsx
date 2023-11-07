@@ -19,7 +19,7 @@ const NewMember = () => {
 
   return (
     <>
-      <h1 className="text-4xl font-black">Añadir nuevo Miembro al Proyecto: {project.user}</h1>
+      <h1 className="text-4xl font-bold">Añadir nuevo Miembro al Proyecto: {project.user}</h1>
 
 
       <div className="mt-10 flex justify-center">

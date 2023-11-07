@@ -13,17 +13,15 @@ const ProjectForm = () => {
     const params=useParams()
     const{showAlert, alert, submitProject,project}=useProjects()
     /* ----------------------------- */
-    useEffect(()=>{
+    useEffect(() => {
       if (params._id) {
-        setId(project._id)
-        setUser(project.user)
-        setDescription(project.description)
-        /* el signo ? asegura que si project.deliveryDate no está definido, 
-        la expresión se detenga de manera segura sin lanzar un error  */
-        setDeliveryDate(project.deliveryDate?.split('T')[0])
-        setClient(project.client)
+        setId(project._id);
+        setUser(project.user);
+        setDescription(project.description);
+        setDeliveryDate(project.deliveryDate?.split('T')[0]);
+        setClient(project.client);
       }
-    },{params})
+    }, [params._id, project._id, project.user, project.description, project.deliveryDate, project.client])
     /* ----------------------------- */
     const handleSubmit= async e=>{
         e.preventDefault()
@@ -38,7 +36,7 @@ const ProjectForm = () => {
 
         await submitProject({id,user,description,deliveryDate,client})
 
-        setId("null")
+        setId(null)
         setUser('')
         setDescription('')
         setDeliveryDate('')
@@ -49,7 +47,7 @@ const ProjectForm = () => {
     const { msg } = alert
 
   return (
-    <form className='bg-white py-10 px-5 md:w-1/2 rounded-md'
+    <form className='bg-gray-300 py-10 px-5 md:w-1/2 rounded-md'
     onSubmit={handleSubmit}>
 
     {msg && <Alert alert={alert}/>}
@@ -91,9 +89,9 @@ const ProjectForm = () => {
         onChange={e=>setClient(e.target.value)}/>
       </div>
     <input type="submit" 
-    value={id?'Update Project':'Create Project'}
+    value={id?'Update Project':'Crear Nuevo Proyecto'}
     className='bg-teal-700 w-full p-3 uppercase font-bold text-white rounded cursor-pointer
-    hover:bg-red-400 transition-colors'></input>
+    hover:bg-red-600 transition-colors'></input>
     </form>
   )
 }

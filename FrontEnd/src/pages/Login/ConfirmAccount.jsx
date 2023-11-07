@@ -36,7 +36,7 @@ const ConfirmAccount = () => {
 
   return (
     <>
-      <h1 className="text-sky-950 font-black rounded-xl text-6xl text-center capitalize bg-teal-500 bg-opacity-30 p-20">Confirmación de cuenta</h1>
+      <h1 className="text-sky-950 font-bold rounded-md text-6xl text-center capitalize bg-teal-500 bg-opacity-30 p-20">Confirmación de cuenta</h1>
       <div className="mt-10 md:mt-5 px-5 py-10 bg-transparent">
         {msg && <Alert alert={alert}/>}
         {confirm && (
